@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="SpeechResearch">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Universal Trading for Order Execution with Oracle Policy Distillation</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		
+			
+		
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="https://schema.org/BlogPosting">
+            <h1 class="entry-title" itemprop="headline">Universal Trading for Order Execution with Oracle Policy Distillation</h1>
+			
+			<section itemprop="entry-text">
+				<br>
+<!-- <img src="../audio/lrspeech/fig/2.png"  width="90%" height="40px"  alt="LRSpeech_pipline" />
+<br>
+<img src="../audio/lrspeech/fig/3.png"  width="90%" height="40px" alt="LRSpeech_model" /> -->
+<img src="../images/rl4intraday/policy_distillation.png"  width="90%" height="40px"  alt="oracle_policy_distillation" />
+<p>ArXiv: </p>
+<!-- Reddit Discussions: [Click me](https://www.reddit.com/r/MachineLearning/comments/brzwi5/r_fastspeech_fast_robust_and_controllable_text_to/) -->
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Yuchen Fang (Shanghai Jiao Tong University) <a href="mailto:arthur_fyc@sjtu.edu.cn">arthur_fyc@sjtu.edu.cn</a></li>
+<li>Kan Ren (Microsoft Research) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Weiqing Liu (Microsoft Research) <a href="mailto:weiqing.liu@microsoft.com">weiqing.liu@microsoft.com</a></li>
+<li>Dong Zhou (Microsoft Research) <a href="mailto:Zhou.Dong@microsoft.com">Zhou.Dong@microsoft.com</a></li>
+<li>Weinan Zhang (Shanghai Jiao Tong University) <a href="mailto:wnzhang@sjtu.edu.cn">wnzhang@sjtu.edu.cn</a></li>
+<li>Jiang Bian (Microsoft Research) <a href="mailto:jiang.bian@microsoft.com">jiang.bian@microsoft.com</a></li>
+<li>Yong Yu (Shanghai Jiao Tong University) <a href="mailto:yyu@apex.sjtu.edu.cn">yyu@apex.sjtu.edu.cn</a></li>
+<li>Tie-Yan Liu (Microsoft Research) <a href="mailto:tyliu@microsoft.com">tyliu@microsoft.com</a></li>
+</ul>
+<h2 id="abstract">Abstract</h2>
+<p>As a fundamental problem in algorithmic trading, order execution aims at fulfilling a specific trading order, either liquidation or acquirement, for a given instrument. Towards effective execution strategy, recent years have witnessed the shift from the analytical view with model-based market assumptions to model-free perspective, i.e., reinforcement learning, due to its nature of sequential decision optimization. However, the noisy and yet imperfect market information that can be leveraged by the policy has made it quite challenging to build up sample efficient reinforcement learning methods to achieve effective order execution. In this paper, we propose a novel universal trading policy optimization framework to bridge the gap between the noisy yet imperfect market states and the optimal action sequences for order execution. Particularly, this framework leverages a policy distillation method that can better guide the learning of the common policy towards practically optimal execution by an oracle teacher with perfect information to approximate the optimal trading strategy. The extensive experiments have shown significant improvements of our method over various strong baselines, with reasonable trading actions.</p>
+
+<!-- ## Code
+
+Code will be released after the paper is accepted by the conference. -->
+<h2 id="related-works">Related Works</h2>
+<p><a href="https://arxiv.org/pdf/1812.06600.pdf">Double Deep Q-Learning for Optimal Execution</a><br>
+<a href="https://www.ijcai.org/Proceedings/2020/0627.pdf">An End-to-End Optimal Trade Execution Framework based on Proximal Policy
+  Optimization</a><br>
+<a href="https://arxiv.org/abs/1511.06295">Policy Distillation</a><br></p>
+
+			</section>
+		</article>
+	</main>
+
+
+	
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-139981676-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+
+
+
+</body>
+</html>
+
