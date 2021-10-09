@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Towards Generating Real-World Time Series Data</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="https://schema.org/BlogPosting">
+            <h1 class="entry-title" itemprop="headline">Universal Trading for Order Execution with Oracle Policy Distillation</h1>
+			
+			<section itemprop="entry-text">
+				<br>
+<!-- <img src="../images/opd/policy_distillation.png"  width="90%" height="40px"  alt="oracle_policy_distillation" /> -->
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="https://github.com/seqml/rtsgan/">Built upon PyTorch</a></p>
+<p>Paper: <a target="_blank" and rel="noopener noreferrer" href="icdm_time_series_generation.pdf">PDF</a></p>
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Hengzhi Pei (University of Illinois at Urbana-Champaign) <a href="mailto: hpei4@illinois.edu"> hpei4@illinois.edu</a></li>
+<li>Kan Ren (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Yuqing Yang (Microsoft Research Asia) <a href="mailto: yuqing.yang@microsoft.com"> yuqing.yang@microsoft.com</a></li>
+<li>Chang Liu (Microsoft Research Asia) <a href="mailto: chang.liu@microsoft.com"> chang.liu@microsoft.com</a></li>
+<li>Tao Qin (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> taoqin@microsoft.com</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> dongsheng.li@microsoft.com</a></li>
+
+</ul>
+<h2 id="abstract">Abstract</h2>
+<p>Time series data generation has drawn increasing attention in recent years. Several generative adversarial network (GAN) based methods have been proposed to tackle the problem usually with the assumption that the targeted time series data are well-formatted and complete. However, real-world time series (RTS) data are far away from this utopia, e.g., long sequences with variable lengths and informative missing data raise intractable challenges for designing powerful generation algorithms. In this paper, we propose a novel generative framework for RTS data -- RTSGAN to tackle the aforementioned challenges. RTSGAN first learns an encoder-decoder module which provides a mapping between a time series instance and a fixed-dimension latent vector and then learns a generation module to generate vectors in the same latent space. By combining the generator and the decoder, RTSGAN is able to generate RTS which respect the original feature distributions and the temporal dynamics. To generate time series with missing values, we further equip RTSGAN with an observation embedding layer and a decide-and-generate decoder to better utilize the informative missing patterns. Experiments on the four RTS datasets show that the proposed framework outperforms the previous generation methods in terms of synthetic data utility for downstream classification and prediction tasks.</p>
+
+<!-- ## Code
+Code will be released after the paper is accepted by the conference. -->
+<h2 id="related-works">Related Works</h2>
+<p>
+  <a target="_blank" and rel="noopener noreferrer" href="https://proceedings.neurips.cc/paper/2019/file/c9efe5f26cd17ba6216bbe2a7d26d490-Paper.pdf">Time-series Generative Adversarial Networks</a><br>
+  <a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/1909.13403">Using GANs for Sharing Networked Time Series Data: Challenges, Initial Promise, and Open Questions</a><br>
+  <a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2006.08571">COT-GAN: Generating Sequential Data via Causal Optimal Transport</a><br>
+</p>
+
+<h2 id="synthetic examples">Synthetic examples</h2>
+<p>Example1: </p>
+<div class="thumbnail">
+    <img class="img-rounded" src="example1.png">
+</div>
+<p>Example2: </p>
+<div class="thumbnail">
+    <img class="img-rounded" src="example2.png">
+</div>
+			</section>
+		</article>
+	</main>
+
+
+	
+
+</div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+
+
+
+</body>
+</html>
