@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Bootstrapped Transformer for Offline Reinforcement Learning</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">Bootstrapped Transformer for Offline Reinforcement Learning</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<!-- <img src="../images/opd/policy_distillation.png"  width="90%" height="40px"  alt="oracle_policy_distillation" /> -->
+<p>Paper: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Kerong Wang (Shanghai Jiao Tong University) <a href="mailto: wangkerong@sjtu.edu.cn">wangkerong@sjtu.edu.cn</a></li>
+<li>Hanye Zhao (Shanghai Jiao Tong University) <a href="mailto: fineartz@sjtu.edu.cn">fineartz@sjtu.edu.cn</a></li>
+<li>Xufang Luo (Microsoft Research Asia) <a href="mailto: xufluo@microsoft.com"> xufluo@microsoft.com</a></li>
+<li>Kan Ren (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Weinan Zhang (Shanghai Jiao Tong University) <a href="mailto: wnzhang@sjtu.edu.cn">wnzhang@sjtu.edu.cn</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> dongsli@microsoft.com</a></li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+<p>Offline reinforcement learning (RL) aims at learning policies from previously collected static trajectory data without interacting with the real environment. Recent works provide a novel perspective by viewing offline RL as a generic sequence generation problem, adopting sequence models such as Transformer architecture to model distributions over trajectories, and repurposing beam search as a planning algorithm. However, the training datasets utilized in general offline RL tasks are quite limited and often suffer from insufficient distribution coverage, which could be harmful to training sequence generation models yet has not drawn enough attention in the previous works. In this paper, we propose a novel algorithm named Bootstrapped Transformer, which incorporates the idea of bootstrapping and leverages the learned model to self-generate more offline data to further boost the sequence model training. We conduct extensive experiments on two offline RL benchmarks and demonstrate that our model can largely remedy the existing offline RL training limitations and beat other strong baseline methods. We also analyze the generated pseudo data and the revealed characteristics may shed some light on offline RL training.</p>
+
+
+<!-- <h2 id="code">Code</h2>
+Code will be released after the paper is accepted by the conference. -->
+
+<h2 id="related-works">Related Works</h2>
+<p>
+<a target="_blank" and rel="noopener noreferrer" href="https://proceedings.neurips.cc/paper/2021/file/099fe6b0b444c23836c4a5d07346082b-Paper.pdf">Offline Reinforcement Learning as One Big Sequence Modeling Problem</a><br>
+</p>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>
