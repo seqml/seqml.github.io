@@ -39,8 +39,7 @@
 <br>
 
 
-<!-- <img src="../images/opd/policy_distillation.png"  width="90%" height="40px"  alt="oracle_policy_distillation" /> -->
-<p>Paper: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2206.08569">https://arxiv.org/abs/2206.08569</a></p>
 <p>Code: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
 
 
@@ -56,11 +55,31 @@
 
 
 <h2 id="abstract">Abstract</h2>
-<p>Offline reinforcement learning (RL) aims at learning policies from previously collected static trajectory data without interacting with the real environment. Recent works provide a novel perspective by viewing offline RL as a generic sequence generation problem, adopting sequence models such as Transformer architecture to model distributions over trajectories, and repurposing beam search as a planning algorithm. However, the training datasets utilized in general offline RL tasks are quite limited and often suffer from insufficient distribution coverage, which could be harmful to training sequence generation models yet has not drawn enough attention in the previous works. In this paper, we propose a novel algorithm named Bootstrapped Transformer, which incorporates the idea of bootstrapping and leverages the learned model to self-generate more offline data to further boost the sequence model training. We conduct extensive experiments on two offline RL benchmarks and demonstrate that our model can largely remedy the existing offline RL training limitations and beat other strong baseline methods. We also analyze the generated pseudo data and the revealed characteristics may shed some light on offline RL training.</p>
+<p>Offline reinforcement learning (RL) aims at learning policies from previously collected static trajectory data without interacting with the real environment. Recent works provide a novel perspective by viewing offline RL as a generic sequence generation problem, adopting sequence models such as Transformer architecture to model distributions over trajectories, and repurposing beam search as a planning algorithm.</p>
+<p>However, the training datasets utilized in general offline RL tasks are quite limited and often suffer from insufficient distribution coverage, which could be harmful to training sequence generation models yet has not drawn enough attention in the previous works. In this paper, we propose a novel algorithm named Bootstrapped Transformer (BooT), which incorporates the idea of bootstrapping and leverages the learned model to self-generate more offline data to further boost the sequence model training.</p>
+<p>We conduct extensive experiments on two offline RL benchmarks and demonstrate that our model can largely remedy the existing offline RL training limitations and beat other strong baseline methods. We also analyze the generated pseudo data and the revealed characteristics may shed some light on offline RL training.</p>
+
+
+<h2 id="algorithm">Algorithm Overview</h2>
+<p>The overall idea of our BooT algorithm is to utilize self-generated trajectories as auxiliary data to further train the model, which is the general idea of bootstrapping. We divide BooT into two main parts, (i) generating trajectories with the learned sequence model and (ii) using the generated trajectories to augment the original offline dataset for bootstrapping the sequence model learning.</p>
+<img src="trajectory_generation.png" alt="Trajectory generation demonstration" style="width: 90%; display: block; margin-left: auto; margin-right: auto;">
+<p>Basically, for each batch of input trajectories, we first train the model with original trajectories. We then generate new trajectories based on the original trajectories, filter them with their quality, and finally train the model again with the generated trajectories. The trajectory generation procedure is demonstrated in the figure above.</p>
+
+
+<h2 id="experiment">Experiment Results</h2>
+<p>We evaluate the performance of BooT algorithm on the dataset of continuous control tasks from the D4RL offline dataset. We compared BooT to various baselines as shown in the table.</p>
+<img src="experiment_result_gym.png" alt="Experiment results on Gym domain of D4RL offline dataset" style="width: 80%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<h2 id="analysis">Further Analysis of Bootstrapping</h2>
+<p>To better understand how BooT helps improve the performance, we visualize the distribution of transitions in the (i) original data, (ii) from teacher-forcing generation, and (iii) from autoregressive generation in BooT. We reduce them to 2-dimension via t-SNE altogether, and plot them separately.</p>
+<img src="generation_visualization.png" alt="Experiment results on Gym domain of D4RL offline dataset" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>The overall results demonstrate that generated trajectories from BooT expand the data coverage while still keeping consistency with the underlying MDP of the corresponding RL task, thus resulting in better performance compared to the baselines.</p>
 
 
 <!-- <h2 id="code">Code</h2>
 Code will be released after the paper is accepted by the conference. -->
+
 
 <h2 id="related-works">Related Works</h2>
 <p>
