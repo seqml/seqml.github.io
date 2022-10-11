@@ -39,7 +39,6 @@
 			
 			<section itemprop="entry-text">
 				<br>
-<!-- <img src="../images/opd/policy_distillation.png"  width="90%" height="40px"  alt="oracle_policy_distillation" /> -->
 <p>ArXiv: <a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2103.10860">https://arxiv.org/abs/2103.10860</a></p>
 <p>Code: <a target="_blank" and rel="noopener noreferrer" href="https://github.com/microsoft/qlib/tree/high-freq-execution/examples/trade/">OPD built upon Microsoft Qlib</a></p>
 <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="opd_aaai21_supplement.pdf">PDF</a></p>
@@ -56,6 +55,9 @@
 </ul>
 <h2 id="abstract">Abstract</h2>
 <p>As a fundamental problem in algorithmic trading, order execution aims at fulfilling a specific trading order, either liquidation or acquirement, for a given instrument. Towards effective execution strategy, recent years have witnessed the shift from the analytical view with model-based market assumptions to model-free perspective, i.e., reinforcement learning, due to its nature of sequential decision optimization. However, the noisy and yet imperfect market information that can be leveraged by the policy has made it quite challenging to build up sample efficient reinforcement learning methods to achieve effective order execution. In this paper, we propose a novel universal trading policy optimization framework to bridge the gap between the noisy yet imperfect market states and the optimal action sequences for order execution. Particularly, this framework leverages a policy distillation method that can better guide the learning of the common policy towards practically optimal execution by an oracle teacher with perfect information to approximate the optimal trading strategy. The extensive experiments have shown significant improvements of our method over various strong baselines, with reasonable trading actions.</p>
+
+<!-- <img src="policy_distillation.png"  width="60%" height="40px"  alt="oracle_policy_distillation" /> -->
+<img src="policy_distillation.png" alt="The whole framework of Oracle Policy Distillation (OPD)" style="width: 60%; display: block; margin-left: auto; margin-right: auto;">
 
 <!-- ## Code
 
