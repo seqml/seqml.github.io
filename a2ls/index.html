@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Reinforcement Learning with Automated Auxiliary Loss Search</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">Reinforcement Learning with Automated Auxiliary Loss Search</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://tairanhe.com">Tairan He</a> (Shanghai Jiao Tong University) <a href="mailto: whynot@sjtu.edu.cn">whynot@sjtu.edu.cn</a></li>
+<li>Yuge Zhang (Microsoft Research Asia) <a href="mailto: yuge.zhang@microsoft.com">yuge.zhang@microsoft.com</a></li>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Minghuan Liu (Shanghai Jiao Tong University) <a href="mailto: minghuanliu@sjtu.edu.cn">minghuanliu@sjtu.edu.cn</a></li>
+<li>Che Wang (New York University) <a href="mailto: chewang@nyu.edu">chewang@nyu.edu</a></li>
+<li>Weinan Zhang (Shanghai Jiao Tong University) <a href="mailto: wnzhang@sjtu.edu.cn">wnzhang@sjtu.edu.cn</a></li>
+<li>Yuqing Yang (Microsoft Research Asia) <a href="mailto: yuqyang@microsoft.com"> yuqyang@microsoft.com</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+<p>A good state representation is crucial to solving complicated reinforcement learning (RL) challenges. Many recent works focus on designing auxiliary losses for learning informative representations. Unfortunately, these handcrafted objectives rely heavily on expert knowledge and may be sub-optimal.</p>
+<p>In this paper, we propose a principled and universal method for learning better representations with auxiliary loss functions, named Automated Auxiliary Loss Search (\method), which automatically searches for top-performing auxiliary loss functions for RL. Specifically, based on the collected trajectory data, we define a general auxiliary loss space of size $7.5 \times 10^{20}$ and explore the space with an efficient evolutionary search strategy.</p>
+<p>Empirical results show that the discovered auxiliary loss (namely, \texttt{A2-winner}) significantly improves the performance on both high-dimensional (image) and low-dimensional (vector) unseen tasks with much higher efficiency, showing promising generalization ability to different settings and even different benchmark domains. We conduct a statistical analysis to reveal the relations between patterns of auxiliary losses and RL performance.</p>
+
+
+<h2 id="algorithm">A2LS Algorithm Overview</h2>
+<p>The overall idea of our A2LS algorithm is to automatically search for better auxiliary losses for RL. </p>
+<img src="auxi_rl_flow.drawio.jpg" alt="Overview of A2LS." style="width: 90%; display: block; margin-left: auto; margin-right: auto;">
+<p>A2LS contains an inner loop (left) and an outer loop (right). The inner loop performs an RL training procedure with searched auxiliary loss functions. The outer loop searches auxiliary loss functions using an evolutionary algorithm to select the better auxiliary losses.</p>
+
+
+<h2 id="experiment">Evolution Results</h2>
+<p>We evaluate the performance of population of auxliary losses druing evolution. The overall AULC scores of the population continue to improve when more stages come in.</p>
+<img src="evolution.png" alt="Evolution process in the three training (image-based) environments" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<h2 id="result">Searched Results</h2>
+<p>To evaluate the searched auxiliary loss (namely A2-winner), we compare A2-winner with baseline methods as follows.</p>
+<img src="evaluation.png" alt="Episodic rewards on DMC." style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>A2-winner greatly outperforms other baseline methods on most tasks, including unseen test environments. This implies that A2-winner is a robust and effective auxiliary loss for image-based continuous control tasks to improve both the efficiency and final performance.</p>
+
+
+<h2 id="analysis">Analysis</h2>
+<p>We analyze all the loss functions we have evaluated during the evolution procedure as a whole dataset in order to gain some insights into the role of auxiliary loss in RL performance.</p>
+<img src="analysis.png" alt="Analysis of auxiliary losses." style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>The statistical analysis reveals the relations between patterns of auxiliary losses and RL performance.</p>
+
+
+<!-- <h2 id="related-works">Related Works</h2>
+<p>
+<a target="_blank" and rel="noopener noreferrer" href="https://proceedings.neurips.cc/paper/2021/file/099fe6b0b444c23836c4a5d07346082b-Paper.pdf">Offline Reinforcement Learning as One Big Sequence Modeling Problem</a><br>
+</p> -->
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>
