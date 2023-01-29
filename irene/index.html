@@ -64,20 +64,20 @@
 
 <h2 id="algorithm">Algorithm Overview</h2>
 <p>In this paper, we propose an InfeRence EfficieNt Ensemble (IRENE) learning approach that systematically combines ensemble learning procedure and inference cost saving as an organic whole.</p>
-<img src="IRENE_framework.jpg" alt="Illustration of our sequential inference and optimal halting mechanism" style="width: 30%; display: block; margin-left: auto; margin-right: auto;">
+<img src="IRENE_framework.jpg" alt="Illustration of our sequential inference and optimal halting mechanism" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
 <p>As illustrated in the above Figure, in our framework, all the base models are kept ordered for training (ensemble learning) and inference (ensemble inference). During the inference process for a given sample, each base model will be activated for inference until the optimal halting event occurs, which has been decided by the jointly trained selector. And all the predictions of the activated models will be aggregated for ensemble output.</p>
 <p>As for optimization, the leveraged base models and the selector are jointly optimized to (i) encourage the base models to specialize more on the challenging samples left from the predecessor(s) and (ii) keep the ensemble more effective when leveraging newly subsequent model(s) while (iii) reducing the overall ensemble costs.</p>
 
 
 <h2 id="experiment">Experiment Results</h2>
 <p>We demonstrate the effectiveness of IRENE on two benchmark datasets, CIFAR-10 and CIFAR-100, using two different backbones, with results shown in the following two tables, respectively.</p>
-<img src="IRENE_cifar10.jpg" alt="Experiment results on CIFAR-10" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
-<img src="IRENE_cifar100.jpg" alt="Experiment results on CIFAR-100" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
+<img src="IRENE_cifar10.jpg" alt="Experiment results on CIFAR-10" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+<img src="IRENE_cifar100.jpg" alt="Experiment results on CIFAR-100" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
 
 
 <h2 id="analysis">Further Analysis of Optimization Objectives</h2>
 <p>We perform ablation studies to analyze the effects of our propose objectives, to provide more insights as shown in the following figure.</p>
-<img src="IRENE_ablation.jpg" alt="Ablation study of the optimization objectives" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
+<img src="IRENE_ablation.jpg" alt="Ablation study of the optimization objectives" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
 
 
 <h2 id="related-works">Related Works</h2>
