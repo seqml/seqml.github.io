@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Towards Inference Efficient Deep Ensemble Learning</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">Towards Inference Efficient Deep Ensemble Learning</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<!-- <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Ziyue Li (Microsoft Research Asia) <a href="mailto: litzy0619owned@gmail.com">litzy0619owned@gmail.com</a></li>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Yifan Yang (Microsoft Research Asia) <a href="mailto: yifanyang@microsoft.com"> yifanyang@microsoft.com</a></li>
+<li>Xinyang Jiang (Microsoft Research Asia) <a href="mailto: xinyangjiang@microsoft.com"> xinyangjiang@microsoft.com</a></li>
+<li>Yuqing Yang (Microsoft Research Asia) <a href="mailto: yuqing.yang@microsoft.com"> yuqing.yang@microsoft.com</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+<p>Ensemble methods can deliver surprising performance gains but also bring  significantly higher computational costs, e.g., can be up to 2048X in large-scale ensemble tasks. However, we found that the majority of computations in ensemble methods are redundant. For instance, over 77% of samples in CIFAR-100 dataset can be correctly classified with only a single ResNet-18 model, which indicates that only around 23% of the samples need an ensemble of extra models.</p>
+<img src="n_estimator.jpg" alt="(a) The performance of the average ensemble method on CIFAR-10/100 with the different number of base models. (b) The minimum size of the average ensemble for correctly predicting samples in the CIFAR-100 dataset." style="width: 30%; display: block; margin-left: auto; margin-right: auto;">
+<p>To this end, we propose an inference efficient ensemble learning method, to simultaneously optimize for both model effectiveness and efficiency in ensemble learning. More specifically, we regard ensemble of models as a sequential inference process and learn the optimal halting event for inference on a specific sample. At each timestep of the inference process, a common selector judges if the current ensemble has reached ensemble effectiveness and halt further inference, otherwise filters this challenging sample for the subsequent models to conduct more powerful ensemble. Both the base models and common selector are jointly optimized to dynamically adjust ensemble inference for different samples with various hardness, through the novel optimization goals including sequential ensemble boosting and computation saving.</p>
+<p>The experiments with different backbones on real-world datasets illustrate our method can bring up to 56% inference cost reduction while maintaining comparable performance to full ensemble, achieving significantly better ensemble utility than other baselines.</p>
+
+
+<h2 id="algorithm">Algorithm Overview</h2>
+<p>In this paper, we propose an InfeRence EfficieNt Ensemble (IRENE) learning approach that systematically combines ensemble learning procedure and inference cost saving as an organic whole.</p>
+<img src="IRENE_framework.jpg" alt="Illustration of our sequential inference and optimal halting mechanism" style="width: 30%; display: block; margin-left: auto; margin-right: auto;">
+<p>As illustrated in the above Figure, in our framework, all the base models are kept ordered for training (ensemble learning) and inference (ensemble inference). During the inference process for a given sample, each base model will be activated for inference until the optimal halting event occurs, which has been decided by the jointly trained selector. And all the predictions of the activated models will be aggregated for ensemble output.</p>
+<p>As for optimization, the leveraged base models and the selector are jointly optimized to (i) encourage the base models to specialize more on the challenging samples left from the predecessor(s) and (ii) keep the ensemble more effective when leveraging newly subsequent model(s) while (iii) reducing the overall ensemble costs.</p>
+
+
+<h2 id="experiment">Experiment Results</h2>
+<p>We demonstrate the effectiveness of IRENE on two benchmark datasets, CIFAR-10 and CIFAR-100, using two different backbones, with results shown in the following two tables, respectively.</p>
+<img src="IRENE_cifar10.jpg" alt="Experiment results on CIFAR-10" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
+<img src="IRENE_cifar100.jpg" alt="Experiment results on CIFAR-100" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<h2 id="analysis">Further Analysis of Optimization Objectives</h2>
+<p>We perform ablation studies to analyze the effects of our propose objectives, to provide more insights as shown in the following figure.</p>
+<img src="IRENE_ablation.jpg" alt="Ablation study of the optimization objectives" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<h2 id="related-works">Related Works</h2>
+<p>
+<a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/pdf/2012.01988">Wisdom of Committees: An Overlooked Approach To Faster and More Accurate Models</a><br>
+</p>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>
