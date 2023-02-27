@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>SIMPLE: Specialized Model-Sample Matching for Domain Generalization</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">SIMPLE: Specialized Model-Sample Matching for Domain Generalization</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<p>Paper: <a target="_blank" and rel="noopener noreferrer" href="https://openreview.net/pdf?id=BqrPeZ_e5P">https://openreview.net/pdf?id=BqrPeZ_e5P</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<!-- <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Ziyue Li (Microsoft Research Asia) <a href="mailto: litzy0619owned@gmail.com">litzy0619owned@gmail.com</a></li>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Xinyang Jiang (Microsoft Research Asia) <a href="mailto: xinyangjiang@microsoft.com"> xinyangjiang@microsoft.com</a></li>
+<li>Yifei Shen (Microsoft Research Asia) <a href="mailto: yifanyang@microsoft.com"> yifanyang@microsoft.com</a></li>
+<li>Haipeng Zhang (ShanghaiTech University) <a href="mailto: yuqing.yang@microsoft.com"> zhanghp@shanghaitech.edu.cn</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+
+<p>In domain generalization (DG), most existing methods aspire to fine-tune a  specific pretrained model through novel DG algorithms. In this paper, we propose an alternative direction, i.e., to efficiently leverage a pool of pretrained models without fine-tuning. Through extensive empirical and theoretical evidence, we demonstrate that (1) pretrained models have possessed generalization to some extent while there is no single best pretrained model across all distribution shifts, and (2) out-of-distribution (OOD) generalization error depends on the fitness between the pretrained model and unseen test distributions. This analysis motivates us to incorporate diverse pretrained models and to dispatch the best matched models for each OOD sample by means of recommendation techniques.</p> 
+
+<img src="SIMPLE_tt_classes_domains.png" alt="Classification performance comparison of pretrained models in different domains and different classes of the TerraIncognita dataset." style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
+
+<p>To this end, we propose SIMPLE, a specialized model-sample matching method for domain generalization. First, the predictions of pretrained models are adapted to the target domain by a linear label space transformation. A matching network aware of model specialty is then proposed to dynamically recommend proper pretrained models to predict each test sample.</p> 
+
+<p>The experiments on DomainBed show that our method achieves significant performance improvements (up to 12.2% for individual dataset and 3.9% on average) compared to state-of-the-art (SOTA) methods and further achieves 6.1% gain via enlarging the pretrained model pool. Moreover, our method is highly efficient and achieves more than 1000 times training speedup compared to the conventional DG methods with fine-tuning a pretrained model.</p>
+
+
+<h2 id="algorithm">Algorithm Overview</h2>
+<p>In this paper, we conduct a fine-grained study on the relationship between pretrained models and distribution shifts. From both empirical and theoretical envidence, we show that <i>no free lunch in terms of pretraining for domain generalization</i>, i.e., there is no single best pretrained model across shifting test distributions. Specifically, 283 pretrained models with different network architectures, pretraining datasets, and learning objectives are compared for their generalization performance under different distributional shifts. The results reveal that the pretrained models without fine-tuning generalize well to some unseen domains, but none of these models dominate in all unseen distributions. Furthermore, the theoretical analysis indicates that OOD generalization error is determined by the <i>fitness</i> between model (varying w.r.t. the network architectures and model weights) and test distribution. For any network architecture with fixed training distributions, such as pretrained models, it is always possible to find a beneficial or detrimental test distribution with a small or large generalization error.</p>
+<p>Motivated by these findings, we propose an alternative DG paradigm that leverages pretrained models with different network architectures and shifting training distributions, upon which we match the most suitable pretrained models for each OOD sample.</p>
+<img src="SIMPLE_framework.png" alt="Illustration of our sequential inference and optimal halting mechanism" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+<p>As illustrated in the above figure, our framework first adopts a simple label adapter that projects the label space of the pretraining domain to that of unseen domains, where the adapter is shared by pretrained models from the same pretraining domain. Then, a matching network, which is aware of model specialty, selects a set of proper pretrained models and aggregates them together to conduct the prediction for each OOD sample.
+</p>
+
+
+
+<h2 id="experiment">Experiment Results</h2>
+<p>Our promising alternative exhibits significant performance improvements, averaging 3.9% over the existing SOTA results, with gains of up to 12.2% on single datasets, and a significant increase in training efficiency.</p>
+<img src="SIMPLE_exp_results.png" alt="Experiment results of SIMPLE" style="width: 55%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<h2 id="analysis">Practical tips for constructing model pools</h2>
+<p>We investigate the impact of different model pool properties on the generalization performance, to provide useful guidance for the composition and utilization of model pools:</p>
+
+<p><b>Tip 1: Use a larger model pool.</b></p>
+
+<p><b>Tip 2: Incorporate diverse models.</b></p>
+
+<p><b>Tip 3: Increasing model diversity matters more than increasing model pool size.</b></p>
+
+<p>(Please refer to the paper for detailed analysis.)</p>
+
+
+<p>The above tips from empirical observations that, more models and more diversity can improve generalization performance, again suggest that there is no free lunch for DG. Thus, different pretrained models are needed to address DG. Our method provides a way to realize this goal both effectively and efficiently by (1) adapting pretrained models to unseen domains via label space adaption with a low cost and (2) dispatching best-fit models from a large model pool to handle each OOD sample.</p>
+
+
+
+<!-- <h2 id="code">Code</h2>
+Code will be released after the paper is accepted by the conference. -->
+
+
+<h2 id="related-works">Related Works</h2>
+<p>
+<a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2202.10054">Fine-Tuning can Distort Pretrained Features and Underperform Out-of-Distribution</a><br>
+</p>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>
