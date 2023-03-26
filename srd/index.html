@@ -1,123 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      gtag("config", "G-67F1SX9G11");
+    </script>
 
-  gtag('config', 'G-67F1SX9G11');
-</script>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.66.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css"
+    />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/skeleton.css" />
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link
+      rel="alternate"
+      href="index.xml"
+      type="application/rss+xml"
+      title="ML for Sequence Data"
+    />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <title>
+      Learning Decomposed Spatial Relations for Multi-Variate Time-Series
+      Modeling
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <header role="banner"></header>
 
-<meta charset="utf-8">
-<meta name="generator" content="Hugo 0.66.0" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
-<link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/skeleton.css">
-<link rel="stylesheet" href="../css/custom.css">
-<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
-<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-<title>Learning Decomposed Spatial Relations for Multi-Variate Time-Series Modeling</title>
-</head>
-<body>
+      <main role="main">
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+          <h1 class="entry-title" itemprop="headline">
+            Learning Decomposed Spatial Relations for Multi-Variate Time-Series
+            Modeling
+          </h1>
 
-<div class="container">
+          <section itemprop="entry-text">
+            <br />
+            <p>
+              Paper:
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="aaai23_srd.pdf"
+                >PDF</a
+              >
+            </p>
+            <p>
+              Supplementary:
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="aaai23_srd_app.pdf"
+                >PDF</a
+              >
+            </p>
+            <p>
+              Code:
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="https://github.com/Arthur-Null/SRD"
+                >PyTorch Implementation</a
+              >
+            </p>
+            <h2 id="authors">Authors</h2>
+            <ul>
+              <li>
+                Yuchen Fang (Shanghai Jiao Tong University)
+                <a href="mailto:arthur_fyc@sjtu.edu.cn">
+                  arthur_fyc@sjtu.edu.cn</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  and
+                  rel="noopener noreferrer"
+                  href="http://www.saying.ren/"
+                  >Kan Ren</a
+                >
+                (Microsoft Research)
+                <a href="mailto: kan.ren@microsoft.com">
+                  kan.ren@microsoft.com</a
+                >
+              </li>
+              <li>
+                Caihua Shan (Microsoft Research)
+                <a href="mailto:caihuashan@microsoft.com">
+                  caihuashan@microsoft.com</a
+                >
+              </li>
+              <li>
+                Yifei Shen (Microsoft Research)
+                <a href="mailto:yshenaw@connect.ust.hk">
+                  yshenaw@connect.ust.hk</a
+                >
+              </li>
+              <li>
+                You Li (Central South University)
+                <a href="mailto:youli.syvail@gmail.com">
+                  youli.syvail@gmail.com</a
+                >
+              </li>
+              <li>
+                Weinan Zhang (Shanghai Jiao Tong University)
+                <a href="mailto:wnzhang@sjtu.edu.cn"> wnzhang@sjtu.edu.cn</a>
+              </li>
+              <li>
+                Yong Yu (Shanghai Jiao Tong University)
+                <a href="mailto:yyu@apex.sjtu.edu.cn"> yyu@apex.sjtu.edu.cn</a>
+              </li>
+              <li>
+                Dongsheng Li (Microsoft Research)
+                <a href="mailto:dongshengli@fudan.edu.cn">
+                  dongshengli@fudan.edu.cn</a
+                >
+              </li>
+            </ul>
+            <h2 id="abstract">Abstract</h2>
+            <p>
+              Modeling multi-variate time-series (MVTS) data is a long-standing
+              research subject and has found wide applications. Recently, there
+              is a surge of interest in modeling spatial relations between
+              variables as graphs, i.e., first learning one static graph for
+              each dataset and then exploiting the graph structure via graph
+              neural networks. However, as spatial relations may differ
+              substantially across samples, building one static graph for all
+              the samples inherently limits flexibility and severely degrades
+              the performance in practice. To address this issue, we propose a
+              framework for fine-grained modeling and utilization of spatial
+              correlation between variables. By analyzing the statistical
+              properties of real-world datasets, a universal decomposition of
+              spatial correlation graphs is first identified. Specifically, the
+              hidden spatial relations can be decomposed into a prior part,
+              which applies across all the samples, and a dynamic part, which
+              varies between samples, and building different graphs is necessary
+              to model these relations. To better coordinate the learning of the
+              two relational graphs, we propose a min-max learning paradigm that
+              not only regulates the common part of different dynamic graphs but
+              also guarantees spatial distinguishability among samples. The
+              experimental results show that our proposed model outperforms the
+              state-of-the-art baseline methods on both time-series forecasting
+              and time-series point prediction tasks.
+            </p>
 
-	<header role="banner">
-		
-	</header>
+            <!-- <img src="policy_distillation.png"  width="60%" height="40px"  alt="oracle_policy_distillation" /> -->
+            <img
+              src="srd_framework.png"
+              alt="The whole framework of Spatial Relations Decomposition (SRD)"
+              style="
+                width: 60%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            />
+            <img
+              src="graph_learning.png"
+              alt="The graph learning module and min-max learning paradigm"
+              style="
+                width: 60%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            />
 
-
-	<main role="main">
-		<article itemscope itemtype="https://schema.org/BlogPosting">
-            <h1 class="entry-title" itemprop="headline">Learning Decomposed Spatial Relations for Multi-Variate Time-Series Modeling</h1>
-			
-			<section itemprop="entry-text">
-				<br>
-<p>Paper: <a target="_blank" and rel="noopener noreferrer" href="aaai23_srd.pdf">PDF</a></p>
-<!-- <p>Code: <a target="_blank" and rel="noopener noreferrer" href="https://github.com/microsoft/qlib/tree/high-freq-execution/examples/trade/">OPD built upon Microsoft Qlib</a></p> -->
-<p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="aaai23_srd_app.pdf">PDF</a></p>
-<h2 id="authors">Authors</h2>
-<ul>
-<li>Yuchen Fang (Shanghai Jiao Tong University) <a href="mailto:arthur_fyc@sjtu.edu.cn"> arthur_fyc@sjtu.edu.cn</a></li>
-<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
-<li>Caihua Shan (Microsoft Research) <a href="mailto:caihuashan@microsoft.com"> caihuashan@microsoft.com</a></li>
-<li>Yifei Shen (Microsoft Research) <a href="mailto:yshenaw@connect.ust.hk"> yshenaw@connect.ust.hk</a></li>
-<li>You Li (Central South University) <a href="mailto:youli.syvail@gmail.com"> youli.syvail@gmail.com</a></li>
-<li>Weinan Zhang (Shanghai Jiao Tong University) <a href="mailto:wnzhang@sjtu.edu.cn"> wnzhang@sjtu.edu.cn</a></li>
-<li>Yong Yu (Shanghai Jiao Tong University) <a href="mailto:yyu@apex.sjtu.edu.cn"> yyu@apex.sjtu.edu.cn</a></li>
-<li>Dongsheng Li (Microsoft Research) <a href="mailto:dongshengli@fudan.edu.cn"> dongshengli@fudan.edu.cn</a></li>
-</ul>
-<h2 id="abstract">Abstract</h2>
-<p>Modeling multi-variate time-series (MVTS) data is a long-standing research subject and has found wide applications. Recently, there is a surge of interest in modeling spatial relations between variables as graphs, i.e., first learning one static graph for each dataset and then exploiting the graph structure via graph neural networks. However, as spatial relations may differ substantially across samples, building one static graph for all the samples inherently limits flexibility and severely degrades the performance in practice. To address this issue, we propose a framework for fine-grained modeling and utilization of spatial correlation between variables. By analyzing the statistical properties of real-world datasets, a universal decomposition of spatial correlation graphs is first identified. Specifically, the hidden spatial relations can be decomposed into a prior part, which applies across all the samples, and a dynamic part, which varies between samples, and building different graphs is necessary to model these relations. To better coordinate the learning of the two relational graphs, we propose a min-max learning paradigm that not only regulates the common part of different dynamic graphs but also guarantees spatial distinguishability among samples. The experimental results show that our proposed model outperforms the state-of-the-art baseline methods on both time-series forecasting and time-series point prediction tasks.</p>
-
-<!-- <img src="policy_distillation.png"  width="60%" height="40px"  alt="oracle_policy_distillation" /> -->
-<img src="srd_framework.png" alt="The whole framework of Spatial Relations Decomposition (SRD)" style="width: 60%; display: block; margin-left: auto; margin-right: auto;">
-<img src="graph_learning.png" alt="The graph learning module and min-max learning paradigm" style="width: 60%; display: block; margin-left: auto; margin-right: auto;">
-
-<!-- ## Code
+            <!-- ## Code
 
 Code will be released after the paper is accepted by the conference. -->
-<h2 id="related-works">Related Works</h2>
-<p>
-  <a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2005.11650">Spatial-Temporal Modeling</a><br>
-</p>
+            <h2 id="related-works">Related Works</h2>
+            <p>
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="https://arxiv.org/abs/2005.11650"
+                >Spatial-Temporal Modeling</a
+              ><br />
+            </p>
+          </section>
+        </article>
+      </main>
+    </div>
 
-			</section>
-		</article>
-	</main>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
 
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          HTML: ["input/TeX","output/HTML-CSS"],
+          TeX: {
+                 Macros: {
+                          bm: ["\\boldsymbol{#1}", 1],
+                          argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                          argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                 extensions: ["AMSmath.js","AMSsymbols.js"],
+                 equationNumbers: { autoNumber: "AMS" } },
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX","output/HTML-CSS"],
+          tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                     displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                     processEscapes: true },
+          "HTML-CSS": { availableFonts: ["TeX"],
+                        linebreaks: { automatic: true } }
+      });
+    </script>
 
-	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
 
-</div>
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-
-
-<script type="text/x-mathjax-config">
-     MathJax.Hub.Config({
-         HTML: ["input/TeX","output/HTML-CSS"],
-         TeX: {
-                Macros: {
-                         bm: ["\\boldsymbol{#1}", 1],
-                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
-                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
-                extensions: ["AMSmath.js","AMSsymbols.js"],
-                equationNumbers: { autoNumber: "AMS" } },
-         extensions: ["tex2jax.js"],
-         jax: ["input/TeX","output/HTML-CSS"],
-         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                    processEscapes: true },
-         "HTML-CSS": { availableFonts: ["TeX"],
-                       linebreaks: { automatic: true } }
-     });
- </script>
-
- <script type="text/x-mathjax-config">
-     MathJax.Hub.Config({
-       tex2jax: {
-         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-       }
-     });
- </script>
-
- <script type="text/javascript" async
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
- </script>
-
-
-
-
-</body>
+    <script
+      type="text/javascript"
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"
+    ></script>
+  </body>
 </html>
-
