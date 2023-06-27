@@ -81,7 +81,7 @@
     Thus, fine-grained EEG signal processing is required.
   </li>
   <!-- <br> -->
-  <img src="eeg_wave_neonate3.jpg" alt="EEG signal sample visualization with epileptic seizure state in highlighted time range annotated by human experts." style="width: 20%; display: block; margin-left: auto; margin-right: auto;">
+  <img src="eeg_wave_neonate3.jpg" alt="EEG signal sample visualization with epileptic seizure state in highlighted time range annotated by human experts." style="width: 90%; display: block; margin-left: auto; margin-right: auto;">
   <br>
   <li><b>Challenge 2: The channel number is variant even limited on neonatal brain health monitoring.</b> Since the head size of neonates is much smaller than adults, which results in the limited sensing electrodes limited in the real scenario.
     And the sensing devices in different centers can be quite different, which leads to variant channel information in the data.
@@ -89,7 +89,7 @@
     All the observations encourage researchers to conduct dynamic modeling techniques for dynamically modeling various even limited EEG signal channels for seizure detection.
   </li>
   <li><b>Challenge 3: Seizure patterns vary among neonates resulting in model generalization issue.</b> The EEG dataset often contains the recordings from a cohort of people and a large variance of data distributions from different subjects have been observed, as shown in the following image.
-    <img src="tsne_5_large_font.png" alt="The t-SNE visualization of 5 different neonates." style="width: 30%; display: block; margin-left: auto; margin-right: auto;">
+    <img src="tsne_5_large_font.png" alt="The t-SNE visualization of 5 different neonates." style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
     From the figure, we can find that different clusters representing the EEG signal distributions of different neonates diverge in a large margin, which places obstacles for machine learning models to generalize from the training dataset to the test dataset which violates the independently identical distributional assumption of machine learning.
   </li>
 </ul>
@@ -106,7 +106,7 @@ Furthermore, we limit the number of channels to simulate a different clinical sc
 
 <h2 id="experiment">Experiment Results</h2>
 <p>The experiment results of all cross-validation folds and the average performance on both 18-channel and 3-channel datasets are presented as follows:</p>
-<img src="results.png" alt="Experiment results" style="width: 55%; display: block; margin-left: auto; margin-right: auto;">
+<img src="results.png" alt="Experiment results" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
 
 We have the following observations from the results.
 <p>
