@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Protecting the Future: Neonatal Seizure Detection with Spatial-Temporal Modeling</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">Protecting the Future: Neonatal Seizure Detection with Spatial-Temporal Modeling</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<p>Paper: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p>
+<!-- <p>Code: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
+<!-- <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Ziyue Li (Microsoft Research Asia) </li>
+<li>Yuchen Fang (Shanghai Jiao Tong University) </li>
+<li>You Li (Central South University) </li>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Yansen Wang (Microsoft Research Asia)</li>
+<li>Xufang Luo (Microsoft Research Asia) </li>
+<li>Juanyong Duan (Microsoft) </li>
+<li>Congrui Huang (Microsoft) </li>
+<li>Dongsheng Li (Microsoft Research Asia) </li>
+<li>Lili Qiu (Microsoft Research Asia) </li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+
+<p>A timely detection of seizures for newborn infants with electroencephalogram (EEG) has been a common yet life-saving practice in the Neonatal Intensive Care Unit (NICU). 
+  However, it requires great human efforts for real-time monitoring, which calls for automated solutions to neonatal seizure detection. 
+  Moreover, the current automated methods focusing on adult epilepsy monitoring often fail due to (i) dynamic seizure onset location in human brains;
+  (ii) different montages on neonates and (iii) huge distribution shift among different subjects.
+  In this paper, we propose a deep learning framework, namely
+  STATENet, to address the exclusive challenges with exquisite designs at the temporal, spatial and model levels. 
+  The experiments over the real-world large-scale neonatal EEG dataset illustrate that our framework achieves significantly better seizure detection performance.
+</p> 
+
+
+<h2 id="challange">Challenges of Neonatal Seizure Detection</h2>
+<p>Here we describe the existed challenges in processing and modeling the EEG signal data for neonatal seizure detection, which also motivates our model design.</p>
+
+<ul>
+  <li><b>Challenge 1: Epilepsy seizure events occur dynamically in different channels.</b> When in the seizure state, the EEG waves illustrate typical disorder with high-frequency spike and wave discharges.
+    However, the signals at different channels have shown different patterns or even do not illustrate seizure, which corresponds to different causes of epileptic seizure and their paroxysm location in the brain.
+    The existing methods often overlook the fine-grained seizure pattern situation and takes the signals of all channels as a whole which may confound various patterns thus degenerate the detection performance.
+    Thus, fine-grained EEG signal processing is required.
+  </li>
+  <!-- <br> -->
+  <img src="eeg_wave_neonate3.jpg" alt="EEG signal sample visualization with epileptic seizure state in highlighted time range annotated by human experts." style="width: 20%; display: block; margin-left: auto; margin-right: auto;">
+  <br>
+  <li><b>Challenge 2: The channel number is variant even limited on neonatal brain health monitoring.</b> Since the head size of neonates is much smaller than adults, which results in the limited sensing electrodes limited in the real scenario.
+    And the sensing devices in different centers can be quite different, which leads to variant channel information in the data.
+    Several related works have also studied neonatal seizure detection with limited channels, e.g., only two channels.
+    All the observations encourage researchers to conduct dynamic modeling techniques for dynamically modeling various even limited EEG signal channels for seizure detection.
+  </li>
+  <li><b>Challenge 3: Seizure patterns vary among neonates resulting in model generalization issue.</b> The EEG dataset often contains the recordings from a cohort of people and a large variance of data distributions from different subjects have been observed, as shown in the following image.
+    <img src="tsne_5_large_font.png" alt="The t-SNE visualization of 5 different neonates." style="width: 30%; display: block; margin-left: auto; margin-right: auto;">
+    From the figure, we can find that different clusters representing the EEG signal distributions of different neonates diverge in a large margin, which places obstacles for machine learning models to generalize from the training dataset to the test dataset which violates the independently identical distributional assumption of machine learning.
+  </li>
+</ul>
+
+<h2 id="method">Method</h2>
+
+<p>We propose a deep learning framework, SpaTiAl-Temporal EEG Network (STATENet) to address the exclusive challenges with exquisite designs at the <b>temporal</b>, <b>spatial</b> and <b>model</b> levels. </p>
+<p>Specifically, we incorporate a channel-level temporal modeling component for fine-grained brain signal processing, which is more flexible when tackling varying yet limited EEG channels on neonates. After the temporal modeling process, we leverage a spatial fusion module to comprehensively synthesize channel-level temporal patterns for detection.
+This process has been optimized through an end-to-end manner without explicitly signal preprocessing or human-crafted artifact removal.</p>
+<p>Moreover, we propose a model-level ensemble by dynamically aggregating the outcomes of diverse spatial-temporal deep models to better generalize among different neonates.</p>
+<!-- <p>We conduct experiments on a real-world large-scale neonatal dataset, to compare our model with several competitive baselines focusing on adult seizure detection and illustrate that our method has achieved significantly better seizure detection performance. 
+Furthermore, we limit the number of channels to simulate a different clinical scenario and transfer the learned model directly, and we observe little performance drop in the detection quality of STATENet, which illustrates the robustness of our method.</p> -->
+
+
+<h2 id="experiment">Experiment Results</h2>
+<p>The experiment results of all cross-validation folds and the average performance on both 18-channel and 3-channel datasets are presented as follows:</p>
+<img src="results.png" alt="Experiment results" style="width: 55%; display: block; margin-left: auto; margin-right: auto;">
+
+We have the following observations from the results.
+<p>
+  (1) <i>Superiority of individual model</i>: 
+  Our proposed STATENet achieves the best performance compared with other baseline models without ensemble on most folds of two datasets, which illustrates that the fine-grained channel-level temporal modeling and spatial fusion offer great capacity for EEG modeling.</p>
+<p>(2) <i>Advances of ensemble</i>:
+  Over a diverse set of trained models, the ensemble model further boosts the performances, which results from the better generalization ability brought by the ensemble learning process. </p>
+<p>(3) <i>Transferability</i>: 
+  STATENet achieves a comparable performance on 3-channel datasets to that on 18-channel datasets, indicating that STATENet manage to adapt to limited channel scenario, thus more suitable for neonatal seizure detection. This observation is also consistent with clinical observations.</p>
+
+
+
+<h2 id="analysis">Extended Investigation</h2>
+
+<p><b>Transfer Across Montages.</b> Our method can be easily transferred to EEG data with different channels <i>without</i>i> retraining.</p>
+
+<p><b>Occlusion Map Based Localization.</b> Our method has good interpretability and can help for seizure localization, and the ability is also transferable across data with varying number of channels.</p>
+
+<p><b>Model Suitability.</b> We dynamically assign weights for predicting samples of different neonates, and our promising ensemble performance indicating that in this way we can achieve better cross-person generalization.</p>
+
+<p>(Please refer to the paper for detailed analysis.)</p>
+
+
+
+<!-- <h2 id="code">Code</h2>
+Code will be released after the paper is accepted by the conference. -->
+
+
+<!-- <h2 id="related-works">Related Works</h2>
+<p>
+<a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2202.10054">Fine-Tuning can Distort Pretrained Features and Underperform Out-of-Distribution</a><br>
+</p> -->
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>
