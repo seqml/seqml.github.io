@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-67F1SX9G11");
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.66.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css"
+    />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/skeleton.css" />
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link
+      rel="alternate"
+      href="index.xml"
+      type="application/rss+xml"
+      title="ML for Sequence Data"
+    />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <title>
+      Learning Multi-Agent Intention-Aware Communication for Optimal Multi-Order
+      Execution in Finance
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <header role="banner"></header>
+
+      <main role="main">
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+          <h1 class="entry-title" itemprop="headline">
+            Learning Multi-Agent Intention-Aware Communication for Optimal
+            Multi-Order Execution in Finance
+          </h1>
+
+          <section itemprop="entry-text">
+            <br />
+            <p>
+              Paper:
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="https://arxiv.org/abs/2307.03119"
+                >https://arxiv.org/abs/2307.03119</a
+              >
+            </p>
+            <h2 id="authors">Authors</h2>
+            <ul>
+              <li>
+                Yuchen Fang (Shanghai Jiao Tong University)
+                <a href="mailto:arthur_fyc@sjtu.edu.cn">
+                  arthur_fyc@sjtu.edu.cn</a
+                >
+              </li>
+              <li>
+                Zhenggang Tang (University of Illinois Urbana-Champaign)
+                <a href="mailto:zt15@illinois.edu"> zt15@illinois.edu</a>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  and
+                  rel="noopener noreferrer"
+                  href="http://www.saying.ren/"
+                  >Kan Ren</a
+                >
+                (Microsoft Research)
+                <a href="mailto: kan.ren@microsoft.com">
+                  kan.ren@microsoft.com</a
+                >
+              </li>
+              <li>
+                Weiqing Liu (Microsoft Research)
+                <a href="mailto:weiqing.liu@microsoft.com">
+                  weiqing.liu@microsoft.com</a
+                >
+              </li>
+              <li>
+                Li Zhao (Microsoft Research)
+                <a href="mailto:lizo@microsoft.com"> lizo@microsoft.com</a>
+              </li>
+              <li>
+                Jiang Bian (Microsoft Research)
+                <a href="mailto:jiang.bian@microsoft.com">
+                  jiang.bian@microsoft.com</a
+                >
+              </li>
+              <li>
+                Dongsheng Li (Microsoft Research)
+                <a href="mailto:dongshengli@fudan.edu.cn">
+                  dongshengli@fudan.edu.cn</a
+                >
+              </li>
+              <li>
+                Weinan Zhang (Shanghai Jiao Tong University)
+                <a href="mailto:wnzhang@sjtu.edu.cn"> wnzhang@sjtu.edu.cn</a>
+              </li>
+              <li>
+                Yong Yu (Shanghai Jiao Tong University)
+                <a href="mailto:yyu@apex.sjtu.edu.cn"> yyu@apex.sjtu.edu.cn</a>
+              </li>
+              <li>
+                Tie-Yan Liu (Microsoft Research)
+                <a href="mailto:tyliu@microsoft.com"> tyliu@microsoft.com</a>
+              </li>
+            </ul>
+            <h2 id="abstract">Abstract</h2>
+            <p>
+              Order execution is a fundamental task in quantitative finance,
+              aiming at finishing acquisition or liquidation for a number of
+              trading orders of the specific assets. Recent advance in
+              model-free reinforcement learning (RL) provides a data-driven
+              solution to the order execution problem. However, the existing
+              works always optimize execution for an individual order,
+              overlooking the practice that multiple orders are specified to
+              execute simultaneously, resulting in suboptimality and bias. In
+              this paper, we first present a multi-agent RL (MARL) method for
+              multi-order execution considering practical constraints.
+              Specifically, we treat every agent as an individual operator to
+              trade one specific order, while keeping communicating with each
+              other and collaborating for maximizing the overall profits.
+              Nevertheless, the existing MARL algorithms often incorporate
+              communication among agents by exchanging only the information of
+              their partial observations, which is inefficient in complicated
+              financial market. To improve collaboration, we then propose a
+              learnable multi-round communication protocol, for the agents
+              communicating the intended actions with each other and refining
+              accordingly. It is optimized through a novel action value
+              attribution method which is provably consistent with the original
+              learning objective yet more efficient. The experiments on the data
+              from two real-world markets have illustrated superior performance
+              with significantly better collaboration effectiveness achieved by
+              our method.
+            </p>
+
+            <!-- <img src="policy_distillation.png"  width="60%" height="40px"  alt="oracle_policy_distillation" /> -->
+            <h2 id="algorithm">
+              The cash limit and conflicted trading decision problem in
+              multi-order execution
+            </h2>
+            <p>
+              The challenge of order execution lies in two aspects. First, the
+              number of orders changes according to the portfolio allocation
+              from day to day, which requires the order execution strategy to be
+              scalable and flexible to support large and various number of
+              orders. Second, cash balance is limited and all acquiring
+              operations will consume the limited cash supply of the trader,
+              which can only be replenished by the liquidating operations. The
+              lack of cash supply may lead to missing good trading
+              opportunities, which urges one to achieve balance between
+              acquisition and liquidation, to avoid conflicted trading decisions
+              that would cause cash shortage and poor trading performance.
+            </p>
+            <img
+              src="multi-order execution.png"
+              alt="Examples of multi-order execution and conflicted trading decision"
+              style="
+                width: 60%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            />
+            <p>
+              We utilize multi-agent reinforcement learning to solve these
+              challenges. Specifically, each agent is responsible for the
+              trading of one asset to gain the flexibility against variate
+              number of orders. And an intention-aware communication framework
+              with action value attribution optimization is proposed to allow
+              the agents to direct communicate and refine the actions they
+              intended to take for multiple rounds, thus achieving better
+              collaboration ability to reduce conflicted decisions.
+            </p>
+            <img
+              src="framework.png"
+              alt="The policy framework of our intention-aware communication method"
+              style="
+                width: 60%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            />
+
+            <h2 id="experiment">Experiment Results</h2>
+            <p>
+              Our proposed method achieves significant improvements on both
+              China A-share Market and US Stock Market in our backtest
+              experiments.
+            </p>
+            <img
+              src="exp.png"
+              alt="results"
+              style="
+                width: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            />
+            <!-- ## Code
+
+Code will be released after the paper is accepted by the conference. -->
+            <h2 id="related-works">Related Works</h2>
+            <p>
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="https://arxiv.org/abs/1812.06600"
+                >Double Deep Q-Learning for Optimal Execution</a
+              ><br />
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="https://www.ijcai.org/Proceedings/2020/0627.pdf"
+                >An End-to-End Optimal Trade Execution Framework based on
+                Proximal Policy Optimization</a
+              ><br />
+              <a
+                target="_blank"
+                and
+                rel="noopener noreferrer"
+                href="https://arxiv.org/abs/2005.11650"
+                >Oracle policy distillation for order execution</a
+              ><br />
+            </p>
+          </section>
+        </article>
+      </main>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          HTML: ["input/TeX","output/HTML-CSS"],
+          TeX: {
+                 Macros: {
+                          bm: ["\\boldsymbol{#1}", 1],
+                          argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                          argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                 extensions: ["AMSmath.js","AMSsymbols.js"],
+                 equationNumbers: { autoNumber: "AMS" } },
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX","output/HTML-CSS"],
+          tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                     displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                     processEscapes: true },
+          "HTML-CSS": { availableFonts: ["TeX"],
+                        linebreaks: { automatic: true } }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script
+      type="text/javascript"
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"
+    ></script>
+  </body>
+</html>
