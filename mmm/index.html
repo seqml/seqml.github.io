@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>Learning Topology-Agnostic EEG Representations with Geometry-Aware Modeling</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">Learning Topology-Agnostic EEG Representations with Geometry-Aware Modeling</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="TDB">TBD</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="TDB">TBD</a></p>
+<!-- <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Ke Yi (Microsoft Research Asia) <a href="mailto: kerry.yi@outlook.com">kerry.yi@outlook.com</a></li>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Yansen Wang (Microsoft Research Asia) <a href="mailto: yansen@microsoft.com"> yansen@microsoft.com</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+<p>Large-scale pre-training has shown great potential to enhance models on down-stream task in vision and language. Developing similar techniques for scalp elec-troencephalogram (EEG) is suitable since unlabelled data is plentiful. Meanwhile, various sampling channels selection and inherent structural and spatial information bring challenges and avenues to improve existing pre-training strategies further. </p>
+<img src="problem.jpg" alt="(a) Montage (b) Feature selection" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>In order to break boundaries between different EEG resources and facilitate cross-dataset EEG pre-training, we propose to map all kinds of channel selections to a unified topology. We further introduce MMM, a pre-training framework with Multi-dimensional position encoding, Multi-level channel hierarchy, Multi-stage pre-training strategy built on the unified topology to obtain topology-agnostic representations. </p>
+<p>Experiments demonstrate that our approach yields impressive improvements over previous state-of-the-art techniques on emotional recognition benchmark datasets</p>
+
+
+
+<h2 id="algorithm">Algorithm Overview</h2>
+<p>We introduce MMM, an EEG pre-training framework based on the unified topology that follows the Masked Auto-Encoder (MAE) training schema, i.e., during pre-training, the model first encodes partially-masked irregular input tokens (DE features) to a unified representation with an encoder, and then aims to reconstruct the masked tokens from the unified representation with a decoder.</p>
+<img src="method.jpg" alt="Illustration of our model" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>Our designs of MMM to better support EEG pre-training are 3-fold: 1) Multi-dimensional positional encoding, which injects the geometric information into tokens; 2) Multi-level channel hierarchy, where extra tokens representing aggregated regions are added to the original set of channels. Tokens and channels interact with each other hierarchically; 3) Multi-stage pre-training, where two different masking strategies, global random masking and regional masking are used in turns to learn the hierarchical representations effectively.</p>
+<p>Pre-training stages guide models to generate information-rich unified representation with a bottleneck architecture, where reconstruction only relies on that representation. The pre-trained models can be applied in numerous downstream task with different montages, only requiring input in shape of [num. of ch., num. of feat.]</p>
+
+
+<h2 id="experiment">Experiment Results</h2>
+<p>We demonstrate the effectiveness of MMM on two benchmark datasets, SEED and SEED-IV, with results shown in the following two tables, respectively.</p>
+<img src="exp.jpg" alt="Experiment results" style="width: 75%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<h2 id="analysis">Reconstruction</h2>
+<p>We perform reconstruction visualization to analyze the effects of our propose objectives, to provide more insights as shown in the following figure.</p>
+<img src="vis.jpg" alt="Reconstruction illustration" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>As the mask ratio increases, MAE’s performance starts to collapse while MMM maintains superior reconstruction quality. This phenomenon further substantiates that our approach can effectively model EEG data by the unified topology, yielding robust representations with rich information.</p>
+<h2 id="related-works">Related Works</h2>
+<p>
+<a target="_blank" and rel="noopener noreferrer" href="https://dl.acm.org/doi/10.1145/3503161.3548243">A Multi-view Spectral-Spatial-Temporal Masked Autoencoder for Decoding Emotions with Self-supervised Learning</a><br>
+<a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2111.06377">Masked Autoencoders Are Scalable Vision Learners</a><br>
+</p>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>

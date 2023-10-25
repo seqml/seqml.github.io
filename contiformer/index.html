@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-67F1SX9G11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-67F1SX9G11');
+</script>
+
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.66.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>ContiFormer: Continuous-Time Transformer for Irregular Time Series Modeling</title>
+</head>
+<body>
+
+<div class="container">
+
+<header role="banner">
+</header>
+
+
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<h1 class="entry-title" itemprop="headline">ContiFormer: Continuous-Time Transformer for Irregular Time Series Modeling</h1>
+<section itemprop="entry-text">
+<br>
+
+
+<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="#">TBD</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="#">TBD</a></p>
+<!-- <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
+
+
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Yuqi Chen (Fudan University) <a href="mailto: cyuqi395@gmail.com">cyuqi395@gmail.com</a></li>
+<li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
+<li>Yansen Wang (Microsoft Research Asia) <a href="mailto: yansenwang@microsoft.com"> yansenwang@microsoft.com</a></li>
+<li>Yuchen Fang (Shanghai Jiao Tong University) <a href="mailto: arthur_fyc@sjtu.edu.cn"> arthur_fyc@sjtu.edu.cn</a></li>
+<li>Weiwei Sun (Fudan University) <a href="mailto: wwsun@fudan.edu.cn"> wwsun@fudan.edu.cn</a></li>
+<li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
+</ul>
+
+
+<h2 id="abstract">Abstract</h2>
+<p>Modeling continuous-time dynamics on irregular time series is critical to account for data evolution and correlations that occur continuously. The traditional methodologies including recurrent neural network or the Transformer model leverage inductive bias via powerful neural architectures to capture complex patterns. However, due to their discrete characteristic, they have limitations in generalizing to continuous-time data paradigm. Though Neural Ordinary Differential Equations (ODE) and their variants have shown promising results in dealing with irregular time series, they often fail to capture the intricate correlations within these sequences. It is challenging yet demanding to concurrently model the relationship between input data points and capture the dynamic changes of the continuous time system. To tackle this problem, we propose ContiFormer that extends the relation modeling of vanilla Transformer to continuous domain, which explicitly incorporates the modeling abilities of continuous dynamics of Neural ODE with the attention mechanism of Transformers. We mathematically characterize the expressive power of ContiFormer and illustrated that, by curated designs of function hypothesis, many Transformer variants specialized in irregular time series modeling can be covered as a special case of ContiFormer. A wide range of experiments on both synthetic and real-world datasets have illustrated the superior modeling capacities and prediction performance of ContiFormer on irregular time series data.</p>
+
+
+<h2 id="algorithm">Model Overview</h2>
+<img src="ContiFormer.png" alt="Overview of ContiFormer architecture." style="width: 95%; display: block; margin-left: auto; margin-right: auto;">
+<p>As illustrated in the above Figure, ContiFormer takes an irregular time series and its corresponding sampled time points as input. Queries, keys, and values are obtained in continuoustime form. The attention mechanism (CT-MHA) performs a scaled inner product in a continuous-time manner to capture the evolving relationship between observations, resulting in a complex continuous dynamic system. Feed forward and layer normalization are adopted, similar to the Transformer. Finally, a sampling trick is employed to make ContiFormer stackable. Note that the highlighted trajectories in purple indicate the part of functions that are involved in the calculation of the output.</p>
+
+
+<h2 id="experiment">Experiment Results</h2>
+<p>The first experiment studies the effectiveness of different models from different categories on continuous-time function approximation.</p>
+<img src="Spiral.png" alt="Interpolation and extrapolation of spirals with irregularly-samples time points by Transformer, Neural ODE, and our model." style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p> As shown in the above figure, both Neural ODE and ContiFormer can output a smooth and continuous function approximation, while Transformer fails to interpolate it given the noisy observations (<span style="color: rgb(166, 52, 122);">①</span>).  Additionally, compared to Transformer, our ContiFormer can produce an "almost" continuous-time output, making it more suitable for modeling continuous-time functions. Second, compared to Latent ODE, our ContiFormer excels at retaining long-term information (<span style="color: rgb(76, 87, 161);">②</span>), leading to higher accuracy in extrapolating unseen time series. Conversely, Neural ODE is prone to cumulative errors (<span style="color: rgb(255, 195, 0);">③</span>), resulting in poorer performance in extrapolation tasks. </p>
+
+
+<p>The second experiment evaluates our model on real-world irregular time series data. As shown in the figure below, ContiFormer outperforms all the baselines on all three settings. </p>
+<img src="Classification.png" alt="Experimental results on irregular time series classification. Avg. ACC. stands for average accuracy over 20 datasets and Avg. Rank stands for average ranking over 20 datasets." style="width: 90%; display: block; margin-left: auto; margin-right: auto;">
+
+<p>The third experiment evaluates different models for predicting the type and occurrence time of the next event with irregular event sequences. As shown in the figure below, ContiFormer demonstrate the overall statistical superiority over the baseline models. </p>
+<img src="Event.png" alt="Prediction result of compared models for event prediction. LL for log-likelihood and ACC for accuracy." style="width: 90%; display: block; margin-left: auto; margin-right: auto;">
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+</body>
+</html>
