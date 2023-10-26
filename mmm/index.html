@@ -39,14 +39,14 @@
 <br>
 
 
-<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="TDB">TBD</a></p>
-<p>Code: <a target="_blank" and rel="noopener noreferrer" href="TDB">TBD</a></p>
+<p>Arxiv: <a target="_blank" and rel="noopener noreferrer" href="https://seqml.github.io/MMM/TBD">TBD</a></p>
+<p>Code: <a target="_blank" and rel="noopener noreferrer" href="https://seqml.github.io/MMM/TBD">TBD</a></p>
 <!-- <p>Supplementary: <a target="_blank" and rel="noopener noreferrer" href="TBD">TBD</a></p> -->
 
 
 <h2 id="authors">Authors</h2>
 <ul>
-<li>Ke Yi (Microsoft Research Asia) <a href="mailto: kerry.yi@outlook.com">kerry.yi@outlook.com</a></li>
+<li>Ke Yi (South China University of Technology) <a href="mailto: kerry.yi@outlook.com">kerry.yi@outlook.com</a></li>
 <li>Yansen Wang (Microsoft Research Asia) <a href="mailto: yansenwang@microsoft.com"> yansenwang@microsoft.com</a></li>
 <li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (Microsoft Research Asia) <a href="mailto: kan.ren@microsoft.com"> kan.ren@microsoft.com</a></li>
 <li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
@@ -54,10 +54,10 @@
 
 
 <h2 id="abstract">Abstract</h2>
-<p>Large-scale pre-training has shown great potential to enhance models on down-stream task in vision and language. Developing similar techniques for scalp elec-troencephalogram (EEG) is suitable since unlabelled data is plentiful. Meanwhile, various sampling channels selection and inherent structural and spatial information bring challenges and avenues to improve existing pre-training strategies further. </p>
+<p>Large-scale pre-training has shown great potential to enhance models on downstream tasks in vision and language. Developing similar techniques for scalp electroencephalogram (EEG) is suitable since unlabelled data is plentiful. Meanwhile, various sampling channel selections and inherent structural and spatial information bring challenges and avenues to improve existing pre-training strategies further.</p>
 <img src="problem.jpg" alt="(a) Montage (b) Feature selection" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
-<p>In order to break boundaries between different EEG resources and facilitate cross-dataset EEG pre-training, we propose to map all kinds of channel selections to a unified topology. We further introduce MMM, a pre-training framework with Multi-dimensional position encoding, Multi-level channel hierarchy, Multi-stage pre-training strategy built on the unified topology to obtain topology-agnostic representations. </p>
-<p>Experiments demonstrate that our approach yields impressive improvements over previous state-of-the-art techniques on emotional recognition benchmark datasets</p>
+<p>To break boundaries between different EEG resources and facilitate cross-dataset EEG pre-training, we propose to map all kinds of channel selections to a unified topology. We further introduce MMM, a pre-training framework with Multi-dimensional position encoding, Multi-level channel hierarchy, and Multi-stage pre-training strategy built on the unified topology to obtain topology-agnostic representations.</p>
+<p>Experiments demonstrate that our approach yields impressive improvements over previous state-of-the-art techniques on emotional recognition benchmark datasets.</p>
 
 
 
@@ -65,18 +65,18 @@
 <p>We introduce MMM, an EEG pre-training framework based on the unified topology that follows the Masked Auto-Encoder (MAE) training schema, i.e., during pre-training, the model first encodes partially-masked irregular input tokens (DE features) to a unified representation with an encoder, and then aims to reconstruct the masked tokens from the unified representation with a decoder.</p>
 <img src="method.jpg" alt="Illustration of our model" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
 <p>Our designs of MMM to better support EEG pre-training are 3-fold: 1) Multi-dimensional positional encoding, which injects the geometric information into tokens; 2) Multi-level channel hierarchy, where extra tokens representing aggregated regions are added to the original set of channels. Tokens and channels interact with each other hierarchically; 3) Multi-stage pre-training, where two different masking strategies, global random masking and regional masking are used in turns to learn the hierarchical representations effectively.</p>
-<p>Pre-training stages guide models to generate information-rich unified representation with a bottleneck architecture, where reconstruction only relies on that representation. The pre-trained models can be applied in numerous downstream task with different montages, only requiring input in shape of [num. of ch., num. of feat.]</p>
+<p>Pre-training stages guide models to generate information-rich unified representation with a bottleneck architecture, where reconstruction only relies on that representation. The pre-trained models can be applied in numerous downstream tasks with different montages, only requiring input in the shape of [num. of ch., num. of feat.].</p>
 
 
 <h2 id="experiment">Experiment Results</h2>
 <p>We demonstrate the effectiveness of MMM on two benchmark datasets, SEED and SEED-IV, with results shown in the following two tables, respectively.</p>
-<img src="exp.jpg" alt="Experiment results" style="width: 75%; display: block; margin-left: auto; margin-right: auto;">
+<img src="exp.jpg" alt="Experiment results" style="width: 80%; display: block; margin-left: auto; margin-right: auto;">
 
 
-<h2 id="analysis">Reconstruction</h2>
-<p>We perform reconstruction visualization to analyze the effects of our propose objectives, to provide more insights as shown in the following figure.</p>
-<img src="vis.jpg" alt="Reconstruction illustration" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
-<p>As the mask ratio increases, MAE’s performance starts to collapse while MMM maintains superior reconstruction quality. This phenomenon further substantiates that our approach can effectively model EEG data by the unified topology, yielding robust representations with rich information.</p>
+<h2 id="analysis">Visualization</h2>
+<p>We perform reconstruction visualization to analyze the effects of our proposed objectives, and to provide more insights as shown in the following figure.</p>
+<img src="vis.jpg" alt="Visualization of reconstruction" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<p>As the mask ratio increases, MAE's performance collapses while MMM maintains superior reconstruction quality. This phenomenon further substantiates that our approach can effectively model EEG data by the unified topology, yielding robust representations with rich information.</p>
 <h2 id="related-works">Related Works</h2>
 <p>
 <a target="_blank" and rel="noopener noreferrer" href="https://dl.acm.org/doi/10.1145/3503161.3548243">A Multi-view Spectral-Spatial-Temporal Masked Autoencoder for Decoding Emotions with Self-supervised Learning</a><br>
