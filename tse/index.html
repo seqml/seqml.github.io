@@ -44,7 +44,7 @@
 
 <h2 id="authors">Authors</h2>
 <ul>
-<li>Baoyu Jing* (University of Illinois at Urbana-Champaign) <a href="mailto: baoyu.jing@hotmail.com">baoyu.jing@hotmail.com</a></li>
+<li>Baoyu Jing* (University of Illinois at Urbana-Champaign) <a href="mailto: baoyuj2@illinois.edu">baoyuj2@illinois.edu</a></li>
 <li>Shuqi Gu* (ShanghaiTech University) <a href="mailto: gushq2024@shanghaitech.edu.cn">gushq2024@shanghaitech.edu.cn</a></li>
 <li>Tianyu Chen (ShanghaiTech University) <a href="mailto: ">None</a></li>
 <li>Zhiyu Yang (ShanghaiTech University) <a href="mailto: ">None</a></li>
@@ -128,14 +128,33 @@ play an important role in improving performance.
 </p>
 
 <p> 
-<img src="figure/main-exp-res.png" alt="Experiment results of TEdit" style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
+<img src="figure/main-exp-res.png" alt="Experiment results of TEdit" style="width: 90%; display: block; margin-left: auto; margin-right: auto;">
 </p>
 
 <h2 id="case">Case Study </h2>
-
-<p> 
-
-</p>
+<p> Figure (a)</p>
+<li>
+  Source attr: trend type is logarithm, trend direction is down, season cycle is 0. 
+</li>
+<li>
+  Target attr: trend type is linear, trend direction is down, season cycle is 0.
+</li>
+<br>
+<p> Figure (b)</p>
+<li>
+  Source attr: trend type is exponential, trend direction is down, season cycle is 2. 
+</li>
+<li>
+  Target attr: trend type is exponential, trend direction is up, season cycle is 2.
+</li>
+<br>
+<p> Figure (c)</p>
+<li>
+  Source attr: trend type is quadratic, trend direction is up, season cycle is 0. 
+</li>
+<li>
+  Target attr: trend type is quadratic, trend direction is up, season cycle is 4.
+</li>
 
 <video controls width="300">
   <source src="video/trend_types.mp4" type="video/mp4" />
@@ -163,19 +182,28 @@ up to down
 
 <h2 id="comparation">Comparation </h2>
 <p> 
+  Preserve the trend direction up, the season cycles equal to 1
+</p>
+<p> 
 Edit the trend type from <b>exponential</b> to <b>logarithm</b>
 </p>
 <video controls width="720">
   <source src="video/trend_types_cmp.mp4" type="video/mp4" />
 </video>
-
+<br><br><br>
+<p> 
+  Preserve the trend type linear, the season cycles equal to 0
+</p>
 <p> 
   Edit the trend direction from <b>up</b> to <b>down</b>
 </p>
 <video controls width="720">
   <source src="video/trend_directions_cmp.mp4" type="video/mp4" />
 </video>
-
+<br><br><br>
+<p> 
+  Preserve the trend type quadratic, the trend direction up
+</p>
 <p> 
   Edit the season cycle from <b>1</b> to <b>4</b>
 </p>
