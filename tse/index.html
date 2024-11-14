@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/skeleton.css">
 <link rel="stylesheet" href="../css/custom.css">
+<link rel="stylesheet" href="./css/center.css">
 <link rel="alternate" href="index.xml" type="application/rss+xml" title="ML for Sequence Data">
 <!-- <link rel="shortcut icon" href="favicon.png" type="image/x-icon" /> -->
 <title>Towards Editing Time Series</title>
@@ -46,10 +47,10 @@
 <ul>
 <li>Baoyu Jing* (University of Illinois at Urbana-Champaign) <a href="mailto: baoyuj2@illinois.edu">baoyuj2@illinois.edu</a></li>
 <li>Shuqi Gu* (ShanghaiTech University) <a href="mailto: gushq2024@shanghaitech.edu.cn">gushq2024@shanghaitech.edu.cn</a></li>
-<li>Tianyu Chen (ShanghaiTech University) <a href="mailto: ">None</a></li>
-<li>Zhiyu Yang (ShanghaiTech University) <a href="mailto: ">None</a></li>
+<li>Tianyu Chen (ShanghaiTech University) <a href="mailto: chenty12024@shanghaitech.edu.cn">chenty12024@shanghaitech.edu.cn</a></li>
+<li>Zhiyu Yang (ShanghaiTech University) <a href="mailto: yangzhy22022@shanghaitech.edu.cn">yangzhy22022@shanghaitech.edu.cn</a></li>
 <li>Dongsheng Li (Microsoft Research Asia) <a href="mailto: dongsli@microsoft.com"> dongsli@microsoft.com</a></li>
-<li>Jingrui He (University of Illinois at Urbana-Champaign) <a href="mailto: ">None</a></li>
+<li>Jingrui He (University of Illinois at Urbana-Champaign) <a href="mailto: jingrui.he@gmail.com">jingrui.he@gmail.com</a></li>
 <li><a target="_blank" and rel="noopener noreferrer" href="http://www.saying.ren/">Kan Ren</a> (ShanghaiTech University) <a href="mailto: renkan@shanghaitech.edu.cn"> renkan@shanghaitech.edu.cn</a></li>
 </ul>
 
@@ -132,149 +133,140 @@ play an important role in improving performance.
 </p>
 
 <h2 id="case">Case Study </h2>
-<p> Figure (a)</p>
-<li>
-  Source attr: trend type is logarithm, trend direction is down, season cycle is 0. 
-</li>
-<li>
-  Target attr: trend type is linear, trend direction is down, season cycle is 0.
-</li>
-<br>
-<p> Figure (b)</p>
-<li>
-  Source attr: trend type is exponential, trend direction is down, season cycle is 2. 
-</li>
-<li>
-  Target attr: trend type is exponential, trend direction is up, season cycle is 2.
-</li>
-<br>
-<p> Figure (c)</p>
-<li>
-  Source attr: trend type is quadratic, trend direction is up, season cycle is 0. 
-</li>
-<li>
-  Target attr: trend type is quadratic, trend direction is up, season cycle is 4.
-</li>
 
-<video controls width="300">
-  <source src="video/trend_types.mp4" type="video/mp4" />
-</video>
-<!-- 
-log to linear
--->
-<video controls width="300">
-  <source src="video/trend_directions.mp4" type="video/mp4" />
-</video>
-<!-- 
-up to down
--->
-<video controls width="300">
-  <source src="video/season_cycles.mp4" type="video/mp4" />
-</video>
-<p> 
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a) Editing trend type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  (b) Editing trend direction  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  (c) Editing season cycles 
-</p>
-<!-- 
-0 to 4
--->
+<table class="centered-table">
+  <thead>
+    <tr>
+      <th style="text-align: center">Source attributes</th>
+      <th style="text-align: center">Target attributes</th>
+      <th style="text-align: center">Visualization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: <b>logarithm</b><br>
+        Trend direction: down 
+        Season cycle: 0
+      </td>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: <b>linear</b> <br>
+        Trend direction: down <br>
+        Season cycle: 0 <br>
+      </td>
+      <td style="text-align: center">
+        <video controls width="300">
+          <source src="video/trend_types.mp4" type="video/mp4" />
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: exponential <br>
+        Trend direction: <b>down</b> <br>
+        Season cycle: 2 <br>
+      </td>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: exponential<br>
+        Trend direction: <b>up</b> <br>
+        Season cycle: 2 <br>
+      </td>
+      <td style="text-align: center">
+        <video controls width="300">
+          <source src="video/trend_directions.mp4" type="video/mp4" />
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: quadratic <br>
+        Trend direction: up <br>
+        Season cycle: <b>0</b> <br>
+      </td>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: quadratic<br>
+        Trend direction: up <br>
+        Season cycle: <b>4</b> <br>
+      </td>
+      <td style="text-align: center">
+        <video controls width="300">
+          <source src="video/season_cycles.mp4" type="video/mp4" />
+        </video>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="comparation">Comparation </h2>
-<p> 
-  Preserve the trend direction up, the season cycles equal to 1
-</p>
-<p> 
-Edit the trend type from <b>exponential</b> to <b>logarithm</b>
-</p>
-<video controls width="720">
-  <source src="video/trend_types_cmp.mp4" type="video/mp4" />
-</video>
-<br><br><br>
-<p> 
-  Preserve the trend type linear, the season cycles equal to 0
-</p>
-<p> 
-  Edit the trend direction from <b>up</b> to <b>down</b>
-</p>
-<video controls width="720">
-  <source src="video/trend_directions_cmp.mp4" type="video/mp4" />
-</video>
-<br><br><br>
-<p> 
-  Preserve the trend type quadratic, the trend direction up
-</p>
-<p> 
-  Edit the season cycle from <b>1</b> to <b>4</b>
-</p>
-<video controls width="720">
-  <source src="video/season_cycles_cmp.mp4" type="video/mp4" />
-</video>
+
+<table class="centered-table">
+  <thead>
+    <tr>
+      <th style="text-align: center">Source attributes</th>
+      <th style="text-align: center">Target attributes</th>
+      <th style="text-align: center">Comparation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: <b>exponential</b><br>
+        Trend direction: down 
+        Season cycle: 1
+      </td>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: <b>logarithm</b> <br>
+        Trend direction: down <br>
+        Season cycle: 1 <br>
+      </td>
+      <td style="text-align: center">
+        <video controls width="480">
+          <source src="video/trend_types_cmp.mp4" type="video/mp4" />
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: linear <br>
+        Trend direction: <b>up</b> <br>
+        Season cycle: 0 <br>
+      </td>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: linear<br>
+        Trend direction: <b>down</b> <br>
+        Season cycle: 0 <br>
+      </td>
+      <td style="text-align: center">
+        <video controls width="480">
+          <source src="video/trend_directions_cmp.mp4" type="video/mp4" />
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: quadratic <br>
+        Trend direction: up <br>
+        Season cycle: <b>1</b> <br>
+      </td>
+      <td style="text-align: center;vertical-align:middle;width: 200px;min-width: 200px">
+        Trend type: quadratic<br>
+        Trend direction: up <br>
+        Season cycle: <b>4</b> <br>
+      </td>
+      <td style="text-align: center">
+        <video controls width="480">
+          <source src="video/season_cycles_cmp.mp4" type="video/mp4" />
+        </video>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="related_works">Related Works </h2>
+<p><a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2403.02682">Time Weaver: A Conditional Time Series Generation Model</a></p>
+<p><a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2107.03502">CSDI: Conditional Score-based Diffusion Models for Probabilistic Time Series Imputation</a></p>
 
 
-<!-- 
-<h2 id="experiment">Experiment Results</h2>
-<p>Our promising alternative exhibits significant performance improvements, averaging 3.9% over the existing SOTA results, with gains of up to 12.2% on single datasets, and a significant increase in training efficiency.</p>
-<img src="SIMPLE_exp_results.png" alt="Experiment results of SIMPLE" style="width: 55%; display: block; margin-left: auto; margin-right: auto;">
-
-
-<h2 id="analysis">Practical tips for constructing model pools</h2>
-<p>We investigate the impact of different model pool properties on the generalization performance, to provide useful guidance for the composition and utilization of model pools:</p>
-
-<p><b>Tip 1: Use a larger model pool.</b></p>
-
-<p><b>Tip 2: Incorporate diverse models.</b></p>
-
-<p><b>Tip 3: Increasing model diversity matters more than increasing model pool size.</b></p>
-
-<p>(Please refer to the paper for detailed analysis.)</p>
-
-
-<p>The above tips from empirical observations that, more models and more diversity can improve generalization performance, again suggest that there is no free lunch for DG. Thus, different pretrained models are needed to address DG. Our method provides a way to realize this goal both effectively and efficiently by (1) adapting pretrained models to unseen domains via label space adaption with a low cost and (2) dispatching best-fit models from a large model pool to handle each OOD sample.</p>
-
-
-
-<h2 id="related-works">Related Works</h2>
-<p>
-<a target="_blank" and rel="noopener noreferrer" href="https://arxiv.org/abs/2202.10054">Fine-Tuning can Distort Pretrained Features and Underperform Out-of-Distribution</a><br>
-</p>
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-
-<script type="text/x-mathjax-config">
-     MathJax.Hub.Config({
-         HTML: ["input/TeX","output/HTML-CSS"],
-         TeX: {
-                Macros: {
-                         bm: ["\\boldsymbol{#1}", 1],
-                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
-                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
-                extensions: ["AMSmath.js","AMSsymbols.js"],
-                equationNumbers: { autoNumber: "AMS" } },
-         extensions: ["tex2jax.js"],
-         jax: ["input/TeX","output/HTML-CSS"],
-         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                    processEscapes: true },
-         "HTML-CSS": { availableFonts: ["TeX"],
-                       linebreaks: { automatic: true } }
-     });
- </script>
-
- <script type="text/x-mathjax-config">
-     MathJax.Hub.Config({
-       tex2jax: {
-         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-       }
-     });
- </script>
-
- <script type="text/javascript" async
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
- </script> -->
 
 </body>
 </html>
