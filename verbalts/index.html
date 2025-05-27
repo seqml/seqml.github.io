@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VerbalTS: Generating Time Series from Texts">
+  <meta name="keywords" content="Fairness, Diffusion Models, Social Bias, Mechanistic Interpretability, Sparse Autoencoder">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VerbalTS: Generating Time Series from Texts</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="icon" href="./static/images/favicon.ico" type="image/x-icon">
+  <!-- <link rel="icon" href="./static/images/favicon-16x16.png"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+    
+    .small-caps {
+      font-family: 'EB Garamond', serif;
+      font-variant: small-caps;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">VerbalTS: Generating Time Series from Texts</h1>
+          
+          <div class="has-text-centered" style="color: #FF6F00; margin: 0.5rem 0;">
+            <h2 class="title is-4" style="color: inherit;">
+              International Conference on Machine Learning (ICML) 2025
+            </h2>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Shuqi_Gu1">Shuqi Gu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Chuyue_Li1">Chuyue Li</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Baoyu_Jing1">Baoyu Jing</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.saying.ren/">Kan Ren</a><sup>1†</sup>
+            </span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <div class="author-affiliation">
+              <span class="author-block"><sup>1</sup>ShanghaiTech University</span>
+              <span class="separator" style="margin: 0 30px;"></span>
+              <span class="author-block"><sup>2</sup>University of Illinois at Urbana-Champaign</span>
+            </div>
+            <span class="author-block"><sup>†</sup>Corresponding author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="./static/images/verbalts.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."
+                 >
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Time series synthesis has become a foundational task in modern society, underpinning decision-making across various scenes.
+            Recent approaches primarily generate time series from structured conditions, such as attribute-based metadata.
+            However, these methods struggle to capture the full complexity of time series, as the predefined structures often fail to reflect intricate temporal dynamics or other nuanced characteristics. 
+            Moreover, constructing structured metadata requires expert knowledge, making large-scale data labeling costly and impractical.
+            In this paper, we introduce \method, a novel framework for generating time series from unstructured textual descriptions, offering a more expressive and flexible solution to time series synthesis.
+            To bridge the gap between unstructured text and time series data, \method employs a multi-focal alignment and generation framework, effectively modeling their complex relationships.
+            Experiments on two synthetic and four real-world datasets demonstrate that \method outperforms existing methods in both generation quality and semantic alignment with textual conditions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <p class="has-text-centered"></p>
+    <h2 class="title is-3">Experiment Results</h2> 
+
+    <!-- Interpolating. -->
+    <h3 class="title is-4">Main Results</h3>
+    <div class="content has-text-justified">
+      <p>
+        We compare our method <span class="small-caps">VerbalTS</span> with baselines on two full synthetic datasets, two real-world datasets, and two augmented real-world datasets.
+        <span class="small-caps">VerbalTS</span> demonstrates the ability to generate high-quality time series that are semantically well-aligned with the given conditions.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-13">
+        <div class="content has-text-centered">
+          <img src="./static/images/main_res.png"
+               class="interpolation-image"
+               alt="Main Results"
+               style="width: auto; max-width: 100%;">
+        </div>
+      </div>
+    </div>
+
+      <div class="content has-text-justified">
+      </div>
+      <!-- <div class="columns is-vcentered interpolation-panel"> -->
+        <!-- <div class="column is-3 has-text-centered"> -->
+      <div class="columns is-centered">
+        <div class="column is-13">
+        <div class="content has-text-centered">
+          <img src="./static/images/gen_case_study.png"
+               class="interpolation-image"
+               alt="Generation case study."
+               width = 945/>
+          <!-- <p>Start Frame</p> -->
+        </div>
+      </div>
+    </div>
+    
+  </div>
+    
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <p class="has-text-centered"></p>
+
+    <!-- Interpolating. -->
+    <h3 class="title is-4">Editing</h3>
+    <div class="content has-text-justified">
+      <p>
+        Our method retain original text characteristics while aligning with modified descriptions.
+        With the unstructured text descriptions, <span class="small-caps">VerbalTS</span> achieves finer edits by precisely locating and following the adjusted tokens in the target text description.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-13">
+        <div class="content has-text-centered">
+          <img src="./static/images/edit_case_study.png"
+               class="interpolation-image"
+               alt="Editing case study"
+               style="width: auto; max-width: 100%;">
+        </div>
+      </div>
+    </div>
+    
+</section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <p class="has-text-centered"></p>
+
+    <h3 class="title is-4">Individual Image Transformations Along the Gender Axis</h3>
+    <div class="content has-text-justified">
+      <p>
+        <span class="small-caps">DiffLens</span> achieves smooth and consistent transitions that preserve semantic features like facial
+        expressions, while other methods show distortions and loss of details at higher imbalance ratios.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-13">
+        <div class="content has-text-centered">
+          <img src="./static/images/Figcont.png"
+               class="interpolation-image"
+               alt="Gender debiasing results"
+               style="width: auto; max-width: 100%;">
+        </div>
+      </div>
+    </div>
+    
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <p class="has-text-centered"></p>
+
+<h3 class="title is-4">Fine-grained Control and Editing</h3>
+<div class="content has-text-justified">
+  <p>
+    <span class="small-caps">DiffLens</span> can control bias level with finer granularity and across a broader range.
+  </p>
+</div>
+<div class="columns is-centered">
+  <div class="column">
+    <div class="box has-text-centered">
+      <p class="subtitle is-6">Gender</p>
+      <div class="columns">
+        <div class="column">
+          <img src="./static/images/gender1.gif" class="gif-image" alt="Gender 1">
+        </div>
+        <div class="column">
+          <img src="./static/images/gender2.gif" class="gif-image" alt="Gender 2">
+        </div>
+        <div class="column">
+          <img src="./static/images/gender3.gif" class="gif-image" alt="Gender 3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="box has-text-centered">
+      <p class="subtitle is-6">Age</p>
+      <div class="columns">
+        <div class="column">
+          <img src="./static/images/age1.gif" class="gif-image" alt="Age 1">
+        </div>
+        <div class="column">
+          <img src="./static/images/age2.gif" class="gif-image" alt="Age 2">
+        </div>
+        <div class="column">
+          <img src="./static/images/age3.gif" class="gif-image" alt="Age 3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="box has-text-centered">
+      <p class="subtitle is-6">Race</p>
+      <div class="columns">
+        <div class="column">
+          <img src="./static/images/race1.gif" class="gif-image" alt="Race 1">
+        </div>
+        <div class="column">
+          <img src="./static/images/race2.gif" class="gif-image" alt="Race 2">
+        </div>
+        <div class="column">
+          <img src="./static/images/race3.gif" class="gif-image" alt="Race 3">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<style>
+.gif-image {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+</style>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{gu2025verbalts,
+  author    = {Gu, Shuqi and Li, Chuyue and Jing, Baoyu and Ren, Kan},
+  title     = {VerbalTS: Generating Time Series from Texts},
+  journal   = {ICML},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/genius77777" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
