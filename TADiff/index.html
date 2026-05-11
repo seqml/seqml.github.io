@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions">
+  <meta name="keywords" content="Fairness, Diffusion Models, Social Bias, Mechanistic Interpretability, Sparse Autoencoder">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="icon" href="./static/images/favicon.ico" type="image/x-icon">
+  <!-- <link rel="icon" href="./static/images/favicon-16x16.png"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+    
+    .small-caps {
+      font-family: 'EB Garamond', serif;
+      font-variant: small-caps;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">VerbalTS: Generating Time Series from Texts</h1>
+          
+          <div class="has-text-centered" style="color: #FF6F00; margin: 0.5rem 0;">
+            <h2 class="title is-4" style="color: inherit;">
+              International Conference on Machine Learning (ICML) 2026
+            </h2>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Shuqi_Gu1">Shuqi Gu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Yongxiang_Zhao1">Yongxiang Zhao</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Baoyu_Jing1">Baoyu Jing</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.saying.ren/">Kan Ren</a><sup>1†</sup>
+            </span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <div class="author-affiliation">
+              <span class="author-block"><sup>1</sup>ShanghaiTech University</span>
+              <span class="separator" style="margin: 0 30px;"></span>
+              <span class="author-block"><sup>2</sup>University of Illinois at Urbana-Champaign</span>
+            </div>
+            <span class="author-block"><sup>†</sup>Corresponding author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://icml.cc/virtual/2026/poster/65690"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/seqml/TADiff"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="./static/images/framework.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."
+                 >
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Time series forecasting has become increasingly critical in real-world scenarios, where future sequences are influenced not only by historical patterns but also by forthcoming events. 
+            In this context, forecasting must dynamically adapt to complex and stochastic future conditions, which introduces fundamental challenges in both forecasting and evaluation. 
+            Traditional methods typically rely on historical data or factual future conditions, while overlooking counterfactual scenarios. Furthermore, many existing approaches are restricted to simple structured conditions, limiting their ability to generalize to the real-world complexities. 
+            To address these gaps, we introduce the task of counterfactual time series forecasting with textual conditions, enabling more flexible and condition-aware forecasting. 
+            We propose a comprehensive evaluation framework that encompasses both factual and counterfactual settings, even in the absence of ground truth time series. 
+            Additionally, we present a novel text-attribution mechanism that distinguishes mutable from immutable factors, thereby improving forecast accuracy under sophisticated and stochastic textual conditions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <p class="has-text-centered"></p>
+    <h2 class="title is-3">Experiment Results</h2> 
+
+    <!-- Interpolating. -->
+    <h3 class="title is-4">Main Results</h3>
+    <div class="content has-text-justified">
+      <p>
+        We compare our method <span class="small-caps">TADiff</span> with the baselines on both synthetic and real-world datasets. We consider both the factual forecasting and counterfactual forecasting.
+        <span class="small-caps">TADiff</span> achieves both superior numerical accuracy and semantic consistency. 
+        Moreover, <span class="small-caps">TADiff</span>  exhibits strong adaptability and generalization for forecasting under diverse future conditions.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-13">
+        <div class="content has-text-centered">
+          <img src="./static/images/main_res.png"
+               class="interpolation-image"
+               alt="Main Results"
+               style="width: auto; max-width: 100%;">
+        </div>
+      </div>
+    </div>
+
+      <div class="content has-text-justified">
+      </div>
+      <!-- <div class="columns is-vcentered interpolation-panel"> -->
+        <!-- <div class="column is-3 has-text-centered"> -->
+      <div class="columns is-centered">
+        <div class="column is-13">
+        <div class="content has-text-centered">
+          <img src="./static/images/case_study.png"
+               class="interpolation-image"
+               alt="Generation case study."
+               width = 945/>
+          <!-- <p>Start Frame</p> -->
+        </div>
+      </div>
+    </div>
+    
+  </div>
+    
+</section>
+
+
+<style>
+.gif-image {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+</style>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{gu2026tadiff,
+  author    = {Gu, Shuqi and Zhao, Yongxiang and Jing, Baoyu and Ren, Kan},
+  title     = {What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions},
+  journal   = {International Conference on Machine Learning},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/genius77777" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
