@@ -1,274 +1,698 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
-  <meta charset="utf-8">
-  <meta name="description"
-        content="What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions">
-  <meta name="keywords" content="Fairness, Diffusion Models, Social Bias, Mechanistic Interpretability, Sparse Autoencoder">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
-  <link rel="icon" href="./static/images/favicon.ico" type="image/x-icon">
-  <!-- <link rel="icon" href="./static/images/favicon-16x16.png"> -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
-    
-    .small-caps {
-      font-family: 'EB Garamond', serif;
-      font-variant: small-caps;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      font-size: 1.1em;
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>TADiff | Counterfactual Time Series Forecasting with Textual Conditions</title>
+<meta content="Project page for TADiff, an ICML 2026 main conference paper on counterfactual time series forecasting with textual conditions." name="description"/>
+<meta content="#170407" name="theme-color"/>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions</h1>
-          
-          <div class="has-text-centered" style="color: #FF6F00; margin: 0.5rem 0;">
-            <h2 class="title is-4" style="color: inherit;">
-              International Conference on Machine Learning (ICML) 2026
-            </h2>
-          </div>
-          
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://openreview.net/profile?id=~Shuqi_Gu1">Shuqi Gu</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://openreview.net/profile?id=~Yongxiang_Zhao1">Yongxiang Zhao</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://openreview.net/profile?id=~Baoyu_Jing1">Baoyu Jing</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.saying.ren/">Kan Ren</a><sup>1†</sup>
-            </span>
-          </div>
-          
-          <div class="is-size-5 publication-authors">
-            <div class="author-affiliation">
-              <span class="author-block"><sup>1</sup>ShanghaiTech University</span>
-              <span class="separator" style="margin: 0 30px;"></span>
-              <span class="author-block"><sup>2</sup>University of Illinois at Urbana-Champaign</span>
-            </div>
-            <span class="author-block"><sup>†</sup>Corresponding author</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://icml.cc/virtual/2026/poster/65690"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/seqml/TADiff"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>              
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div aria-hidden="true" class="flowing-bg">
+  <canvas class="flow-canvas" id="flow-canvas"></canvas>
+  <span class="flow-orb"></span>
+  <span class="flow-orb"></span>
+  <span class="flow-orb"></span>
+</div>
+<div aria-hidden="true" class="noise"></div>
+<nav aria-label="Main navigation" class="site-nav">
+<div class="nav-inner">
+<a aria-label="TADiff Home" class="brand" href="#home">
+<img alt="Project logo" src="assets/images/tadiff-mark.png"/>
+<span>TADiff</span>
+</a>
+<button aria-label="Toggle menu" class="menu-button" type="button">Menu</button>
+<div class="nav-links">
+<a class="active" href="#home">Home</a>
+<a href="#abstract">Abstract</a>
+<a href="#method">Method</a>
+<a href="#evaluation">Evaluation</a>
+<a href="#showcase">Showcase</a>
+<a href="#citation">Citation</a>
+</div>
+</div>
+</nav>
+<header class="hero" id="home">
+<div class="container hero-grid hero-single">
+<div class="hero-copy reveal visible">
+<div class="status-row">
+<img alt="World Cup mascot thumbnail" class="status-thumbnail" decoding="async" src="assets/images/icml-2026-thumbnail.png"/>
+<span class="badge">ICML 2026</span>
+<span class="badge">Time Series Forecasting</span>
+<span class="badge">Multimodal</span>
+<span class="badge">Counterfactual</span>
+<span class="badge">Diffusion</span>
+</div>
+<h1 class="hero-title-full"><span class="gradient-text title-question">What if Tomorrow is the World Cup Final?</span><span class="title-subtitle">Counterfactual Time Series Forecasting with Textual Conditions</span></h1>
+<p class="author-line"><b><a href="https://openreview.net/profile?id=~Shuqi_Gu1">Shuqi Gu</a></b><sup>1</sup>, <b><a href="https://openreview.net/profile?id=~Yongxiang_Zhao1">Yongxiang Zhao</a></b><sup>1</sup>, <b><a href="https://openreview.net/profile?id=~Baoyu_Jing1">Baoyu Jing</a></b><sup>2</sup>, <b><a href="https://www.saying.ren/">Kan Ren</a></b><sup>1†</sup><br/><span><sup>1</sup>ShanghaiTech University · <sup>2</sup>University of Illinois at Urbana-Champaign</span><br/><span><sup>†</sup>Corresponding author</span></p>
+<div aria-label="Project resources" class="cta-row resource-cta">
+<a class="btn btn-paper" href="https://icml.cc/virtual/2026/poster/65690" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="btn-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M7.25 3.5h6.65l4.85 4.85v12.15a1 1 0 0 1-1 1H7.25a1 1 0 0 1-1-1v-17a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path>
+<path d="M13.75 3.8v4.6h4.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+<path d="M9.25 12.4h5.9M9.25 15.5h6.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+            Paper <span aria-hidden="true" class="external-arrow">↗</span>
+</a>
+<a class="btn btn-code" href="https://github.com/seqml/TADiff" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="btn-icon github-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M12 .9C5.85.9 1.9 4.95 1.9 10.26c0 4.12 2.68 7.61 6.38 8.84.47.09.64-.2.64-.45 0-.22-.01-.81-.01-1.59-2.6.56-3.15-1.26-3.15-1.26-.42-1.08-1.04-1.37-1.04-1.37-.85-.58.06-.57.06-.57.94.07 1.44.97 1.44.97.84 1.44 2.2 1.02 2.73.78.09-.61.33-1.02.6-1.25-2.07-.24-4.25-1.04-4.25-4.62 0-1.02.36-1.85.96-2.5-.1-.24-.42-1.19.09-2.47 0 0 .79-.25 2.57.96A8.9 8.9 0 0 1 12 5.41c.79 0 1.58.11 2.33.32 1.78-1.21 2.56-.96 2.56-.96.51 1.28.19 2.23.1 2.47.6.65.96 1.48.96 2.5 0 3.59-2.19 4.38-4.28 4.61.34.29.64.86.64 1.74 0 1.25-.01 2.26-.01 2.57 0 .25.17.54.65.45 3.69-1.23 6.37-4.72 6.37-8.84C21.32 4.95 17.16.9 12 .9Z" fill="currentColor"></path>
+</svg>
+            Code <span aria-hidden="true" class="external-arrow">↗</span>
+</a>
+<a class="btn btn-results" href="#evaluation">
+<svg aria-hidden="true" class="btn-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M4.5 19.5h15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"></path>
+<path d="M6.5 16.5v-5.8M12 16.5V7.2M17.5 16.5v-9.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"></path>
+<path d="M5.2 5.6 10 9l4.2-4.6 4.6 3.2" fill="none" opacity=".82" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+            Benchmark Results
+          </a>
+<a class="btn btn-cases" href="#showcase">
+<svg aria-hidden="true" class="btn-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M12 3.2 13.85 8l5.05 1.88-5.05 1.88L12 16.8l-1.85-5.04L5.1 9.88 10.15 8 12 3.2Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path>
+<path d="M18.2 15.1 19 17l1.9.8-1.9.75-.8 1.95-.75-1.95-1.95-.75 1.95-.8.75-1.9Z" fill="currentColor"></path>
+</svg>
+            What-if Cases
+          </a>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section aria-labelledby="abstract-title" class="section tight" id="abstract">
+<div class="container abstract-layout">
+<div class="section-heading reveal">
+<div class="section-number">01 · Abstract</div>
+<h2 id="abstract-title">Forecasting beyond what actually happens</h2>
+<p class="lead">One observed history can lead to many plausible futures. TADiff makes those futures controllable with natural language.</p>
+</div>
+<div class="prose-card reveal">
+<p>Time series forecasting is increasingly shaped by forthcoming events rather than historical patterns alone. Traditional models usually rely on historical observations or factual future conditions, making it difficult to reason about counterfactual scenarios such as unexpected traffic, weather, health, or market events.</p>
+<p>We introduce <strong>counterfactual time series forecasting with textual conditions</strong>, where future conditions are expressed as flexible natural-language descriptions. <strong>TADiff</strong> uses a text-attribution mechanism to separate mutable textual effects from immutable historical factors, then forecasts with a condition-aware diffusion process.</p>
+<p>The project also includes an evaluation framework for both factual and counterfactual settings. <strong>DTTC-I</strong> measures consistency with intrinsic historical factors, while <strong>DTTC-E</strong> measures consistency with future textual semantics when the true counterfactual future is unavailable.</p>
+</div>
+</div>
+<div aria-label="Key ideas" class="container key-grid">
+<article class="bento-card reveal">
+<div class="card-kicker">What-if text</div>
+<h3>Flexible future conditions</h3>
+<p>Describe events in natural language instead of fixed intervention categories.</p>
+</article>
+<article class="bento-card reveal">
+<div class="card-kicker">Attribution</div>
+<h3>Intrinsic history first</h3>
+<p>Extract condition-independent features before generating the future.</p>
+</article>
+<article class="bento-card reveal">
+<div class="card-kicker">Diffusion</div>
+<h3>Distributional forecasts</h3>
+<p>Denoise future sequences under target textual assumptions.</p>
+</article>
+<article class="bento-card reveal">
+<div class="card-kicker">DTTC</div>
+<h3>No-ground-truth scoring</h3>
+<p>Evaluate semantic consistency for futures that never happened.</p>
+</article>
+</div>
 </section>
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="content has-text-centered">
-      <img src="./static/images/framework.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."
-                 >
-    </div>
-  </div>
+<section aria-labelledby="method-title" class="section" id="method">
+<div class="container">
+<div class="section-head reveal">
+<div>
+<div class="section-number">02 · Method</div>
+<h2 id="method-title">Overview</h2>
+</div>
+<p class="lead">TADiff first attributes condition-invariant historical signals, then generates factual or counterfactual futures under target textual conditions.</p>
+</div>
+<div class="image-shell reveal">
+<img alt="TADiff framework with attribution and forecasting pipelines" src="assets/images/framework.png"/>
+<p class="image-caption">Training jointly optimizes attribution and forecasting. Inference first attributes <b>x<sub>h,T</sub></b> from history, then uses it as the initial diffusion state for future forecasting.</p>
+</div>
+<div aria-label="TADiff overview pipeline" class="pipeline reveal">
+<div class="step"><div class="step-num">1</div><div><h3>Attribute history</h3><p>Diffuse the historical sequence under historical text to remove extrinsic context and obtain intrinsic features <b>x<sub>h,T</sub></b>.</p></div></div>
+<div class="step"><div class="step-num">2</div><div><h3>Forecast with future text</h3><p>Initialize the future diffusion state with <b>x<sub>h,T</sub></b>, concatenate clear history, and denoise under the future textual condition <b>c<sub>f</sub></b>.</p></div></div>
+<div class="step"><div class="step-num">3</div><div><h3>Finetune for what-if shifts</h3><p>Construct alternative future conditions and optimize semantic alignment even when counterfactual ground-truth futures are absent.</p></div></div>
+</div>
+<div class="method-grid method-offset">
+<article class="method-card reveal">
+<span class="tag">Diffusion</span>
+<h3>Uncertainty-aware forecasting</h3>
+<p>DDIM-style denoising models stochastic time-series evolution under given text conditions.</p>
+</article>
+<article class="method-card reveal">
+<span class="tag">Attribution</span>
+<h3>Intrinsic initial state</h3>
+<p>Instead of random Gaussian noise, TADiff starts future generation from attributed historical features.</p>
+</article>
+<article class="method-card reveal">
+<span class="tag">Evaluation</span>
+<h3>Factual + counterfactual</h3>
+<p>MAE/MSE are used with ground truth; DTTC handles unobserved counterfactual futures.</p>
+</article>
+</div>
+</div>
 </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Time series forecasting has become increasingly critical in real-world scenarios, where future sequences are influenced not only by historical patterns but also by forthcoming events. 
-            In this context, forecasting must dynamically adapt to complex and stochastic future conditions, which introduces fundamental challenges in both forecasting and evaluation. 
-            Traditional methods typically rely on historical data or factual future conditions, while overlooking counterfactual scenarios. Furthermore, many existing approaches are restricted to simple structured conditions, limiting their ability to generalize to the real-world complexities. 
-            To address these gaps, we introduce the task of counterfactual time series forecasting with textual conditions, enabling more flexible and condition-aware forecasting. 
-            We propose a comprehensive evaluation framework that encompasses both factual and counterfactual settings, even in the absence of ground truth time series. 
-            Additionally, we present a novel text-attribution mechanism that distinguishes mutable from immutable factors, thereby improving forecast accuracy under sophisticated and stochastic textual conditions.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-  </div>
+<section aria-labelledby="evaluation-title" class="section" id="evaluation">
+<div class="container">
+<div class="section-head reveal eval-head-minimal">
+<div>
+<div class="section-number">03 · Evaluation</div>
+<h2 id="evaluation-title">Main results</h2>
+</div>
+</div>
+<div aria-label="Evaluation settings" class="results-tabs eval-setting-tabs reveal" role="tablist">
+<button aria-controls="panel-factual" aria-selected="true" class="active" data-tab="factual" id="tab-factual" role="tab" type="button">Factual setting</button>
+<button aria-controls="panel-counterfactual" aria-selected="false" data-tab="counterfactual" id="tab-counterfactual" role="tab" type="button">Counterfactual setting</button>
+</div>
+<div aria-labelledby="tab-factual" class="tab-panel eval-setting-panel active" id="panel-factual" role="tabpanel">
+<div aria-label="Factual result view" class="results-tabs eval-view-tabs" role="tablist"><button aria-controls="panel-factual-compact" aria-selected="true" class="active" data-eval-view="compact" id="tab-factual-compact" role="tab" type="button">Compact results</button><button aria-controls="panel-factual-full" aria-selected="false" data-eval-view="full" id="tab-factual-full" role="tab" type="button">Full results</button></div><div class="evaluation-panels eval-view-panels">
+<article aria-labelledby="tab-factual-compact" class="result-panel compact-result-panel eval-view-panel active" data-eval-view-panel="compact" id="panel-factual-compact" role="tabpanel">
+<div aria-label="Factual setting compact summary" class="metric-mini-grid metric-mini-grid-two">
+<div class="metric-mini"><strong>16 / 20</strong><span>Best / Tied-best</span></div>
+<div class="metric-mini"><strong>1.50</strong><span>Average Rank ↓</span></div>
+</div>
+<div aria-label="Factual setting overall performance chart" class="score-plot-wrap" role="region" tabindex="0"><svg aria-label="Factual Overall Performance" class="score-svg" role="img" viewbox="0 0 1100 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="bar-grad-factual-overall-performance-0" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffe8a8"></stop><stop offset="1" stop-color="#d5a235"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f8c84e"></stop><stop offset="1" stop-color="#c8192f"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00945d"></stop><stop offset="1" stop-color="#006b46"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#006b46"></stop><stop offset="1" stop-color="#d91f2f"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d91f2f"></stop><stop offset="1" stop-color="#f1b94b"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-5" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f1b94b"></stop><stop offset="1" stop-color="#9d1523"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-6" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9d1523"></stop><stop offset="1" stop-color="#f7d67a"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-7" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#008956"></stop><stop offset="1" stop-color="#f4c65a"></stop></lineargradient>
+<lineargradient id="bar-grad-factual-overall-performance-8" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#efe5c6"></stop><stop offset="1" stop-color="#8b7a55"></stop></lineargradient>
+<filter height="170%" id="barGlow" width="170%" x="-35%" y="-35%"><fegaussianblur result="blur" stddeviation="12"></fegaussianblur><femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+</defs>
+<rect fill="rgba(255,226,148,0.050)" height="358" rx="24" stroke="rgba(255,226,148,0.20)" width="1098" x="1" y="1"></rect>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="34.0" y2="34.0"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="39.0">100</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="95.5" y2="95.5"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="100.5">75</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="157.0" y2="157.0"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="162.0">50</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="218.5" y2="218.5"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="223.5">25</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="280.0" y2="280.0"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="285.0">0</text>
+<rect fill="url(#bar-grad-factual-overall-performance-0)" filter="url(#barGlow)" height="230.7" opacity="0.96" rx="14" width="54" x="87.6" y="49.3"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="114.6" y="35.3">93.8</text>
+<text fill="#ffffff" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 114.6 314.0)" x="114.6" y="314.0">TADiff (Ours)</text>
+<rect fill="url(#bar-grad-factual-overall-performance-1)" height="172.2" opacity="0.96" rx="14" width="54" x="200.7" y="107.8"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="227.7" y="93.8">70.0</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 227.7 314.0)" x="227.7" y="314.0">PatchTST</text>
+<rect fill="url(#bar-grad-factual-overall-performance-2)" height="135.3" opacity="0.96" rx="14" width="54" x="313.8" y="144.7"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="340.8" y="130.7">55.0</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 340.8 314.0)" x="340.8" y="314.0">Sundial</text>
+<rect fill="url(#bar-grad-factual-overall-performance-3)" height="127.7" opacity="0.96" rx="14" width="54" x="426.9" y="152.3"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="453.9" y="138.3">51.9</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 453.9 314.0)" x="453.9" y="314.0">TimeMMD</text>
+<rect fill="url(#bar-grad-factual-overall-performance-4)" height="118.3" opacity="0.96" rx="14" width="54" x="540.0" y="161.7"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="567.0" y="147.7">48.1</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 567.0 314.0)" x="567.0" y="314.0">IATSF</text>
+<rect fill="url(#bar-grad-factual-overall-performance-5)" height="112.2" opacity="0.96" rx="14" width="54" x="653.1" y="167.8"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="680.1" y="153.8">45.6</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 680.1 314.0)" x="680.1" y="314.0">DLinear</text>
+<rect fill="url(#bar-grad-factual-overall-performance-6)" height="103.1" opacity="0.96" rx="14" width="54" x="766.2" y="176.9"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="793.2" y="162.9">41.9</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 793.2 314.0)" x="793.2" y="314.0">CT</text>
+<rect fill="url(#bar-grad-factual-overall-performance-7)" height="83.1" opacity="0.96" rx="14" width="54" x="879.3" y="196.9"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="906.3" y="182.9">33.8</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 906.3 314.0)" x="906.3" y="314.0">VerbalTS</text>
+<rect fill="url(#bar-grad-factual-overall-performance-8)" height="69.1" opacity="0.96" rx="14" width="54" x="992.4" y="210.9"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="1019.4" y="196.9">28.1</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 1019.4 314.0)" x="1019.4" y="314.0">TimeCMA</text>
+</svg></div>
+</article>
+<article aria-labelledby="tab-factual-full" class="result-panel full-result-panel eval-view-panel" data-eval-view-panel="full" hidden="" id="panel-factual-full" role="tabpanel">
+<div aria-label="Factual setting full results" class="table-wrap full-results-wrap" role="region" tabindex="0">
+<table class="full-results-table paper-results-table">
+<thead><tr><th>Dataset</th><th>Metric</th><th class="ours-head">TADiff (Ours)</th><th>DLinear</th><th>PatchTST</th><th>Sundial</th><th>VerbalTS</th><th>TimeCMA</th><th>TimeMMD</th><th>CT</th><th>IATSF</th></tr></thead>
+<tbody>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="4">Synth</td>
+<td class="metric-cell">MAE ↓</td>
+<td class="best"><span class="ours">0.54</span></td>
+<td>0.73</td>
+<td>0.67</td>
+<td>0.76</td>
+<td>1.00</td>
+<td>0.82</td>
+<td>0.66</td>
+<td>0.57</td>
+<td class="second">0.55</td>
+</tr>
+<tr>
+<td class="metric-cell">MSE ↓</td>
+<td><span class="ours">0.51</span></td>
+<td>0.87</td>
+<td>0.73</td>
+<td>1.01</td>
+<td>1.53</td>
+<td>1.09</td>
+<td>0.67</td>
+<td class="best">0.34</td>
+<td class="second">0.48</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">15.37</span></td>
+<td>13.75</td>
+<td class="second">14.65</td>
+<td>13.73</td>
+<td>12.42</td>
+<td>13.64</td>
+<td>14.30</td>
+<td>13.43</td>
+<td>13.08</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">78.40</span></td>
+<td>64.68</td>
+<td>67.06</td>
+<td>64.25</td>
+<td class="second">74.30</td>
+<td>64.26</td>
+<td>68.87</td>
+<td>67.68</td>
+<td>63.32</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="4">ETTm1</td>
+<td class="metric-cell">MAE ↓</td>
+<td class="best"><span class="ours">0.57</span></td>
+<td>0.84</td>
+<td>0.82</td>
+<td>0.90</td>
+<td class="second">0.58</td>
+<td>0.88</td>
+<td>0.79</td>
+<td>0.79</td>
+<td>0.82</td>
+</tr>
+<tr>
+<td class="metric-cell">MSE ↓</td>
+<td class="best"><span class="ours">0.76</span></td>
+<td>1.52</td>
+<td>1.55</td>
+<td>1.90</td>
+<td class="second">0.87</td>
+<td>1.61</td>
+<td>1.37</td>
+<td>1.29</td>
+<td>1.42</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">10.01</span></td>
+<td>8.99</td>
+<td class="second">9.97</td>
+<td>9.96</td>
+<td>8.16</td>
+<td>8.34</td>
+<td>9.74</td>
+<td>8.44</td>
+<td>7.92</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">146.91</span></td>
+<td>86.33</td>
+<td>109.60</td>
+<td>96.98</td>
+<td class="second">141.14</td>
+<td>74.17</td>
+<td>108.14</td>
+<td>88.22</td>
+<td>80.65</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="4">Traffic</td>
+<td class="metric-cell">MAE ↓</td>
+<td class="best"><span class="ours">0.35</span></td>
+<td>0.52</td>
+<td>0.42</td>
+<td class="second">0.40</td>
+<td>0.80</td>
+<td>0.93</td>
+<td>0.41</td>
+<td>0.45</td>
+<td>0.91</td>
+</tr>
+<tr>
+<td class="metric-cell">MSE ↓</td>
+<td class="best"><span class="ours">0.27</span></td>
+<td>0.43</td>
+<td>0.29</td>
+<td>0.34</td>
+<td>1.07</td>
+<td>1.07</td>
+<td class="second">0.28</td>
+<td>0.34</td>
+<td>1.05</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">17.90</span></td>
+<td>11.27</td>
+<td>12.97</td>
+<td class="second">16.36</td>
+<td>9.73</td>
+<td>6.31</td>
+<td>12.97</td>
+<td>11.12</td>
+<td>6.52</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">81.38</span></td>
+<td>48.31</td>
+<td>58.32</td>
+<td class="second">66.14</td>
+<td>53.75</td>
+<td>21.71</td>
+<td>58.86</td>
+<td>54.10</td>
+<td>24.21</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="4">Exchange</td>
+<td class="metric-cell">MAE ↓</td>
+<td><span class="ours">0.15</span></td>
+<td>0.15</td>
+<td class="second">0.14</td>
+<td class="second">0.14</td>
+<td>0.21</td>
+<td>0.15</td>
+<td>0.22</td>
+<td>0.23</td>
+<td class="best">0.12</td>
+</tr>
+<tr>
+<td class="metric-cell">MSE ↓</td>
+<td class="best"><span class="ours">0.04</span></td>
+<td class="best">0.04</td>
+<td class="best">0.04</td>
+<td class="best">0.04</td>
+<td>0.10</td>
+<td class="best">0.04</td>
+<td class="second">0.08</td>
+<td>0.10</td>
+<td class="best">0.04</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">17.37</span></td>
+<td>16.62</td>
+<td>16.78</td>
+<td class="second">17.04</td>
+<td>15.62</td>
+<td>16.62</td>
+<td>16.03</td>
+<td>15.71</td>
+<td>16.33</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">216.03</span></td>
+<td>204.90</td>
+<td>208.68</td>
+<td>206.49</td>
+<td class="second">212.13</td>
+<td>204.64</td>
+<td>184.25</td>
+<td>199.23</td>
+<td>209.12</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="4">Weather</td>
+<td class="metric-cell">MAE ↓</td>
+<td class="best"><span class="ours">0.18</span></td>
+<td>0.26</td>
+<td class="second">0.19</td>
+<td>0.24</td>
+<td>0.51</td>
+<td>0.30</td>
+<td>0.27</td>
+<td>0.31</td>
+<td class="best">0.18</td>
+</tr>
+<tr>
+<td class="metric-cell">MSE ↓</td>
+<td class="second"><span class="ours">0.11</span></td>
+<td>0.15</td>
+<td class="second">0.11</td>
+<td>0.14</td>
+<td>0.46</td>
+<td>0.19</td>
+<td>0.13</td>
+<td>0.17</td>
+<td class="best">0.09</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-I ↑</td>
+<td><span class="ours">26.65</span></td>
+<td>26.79</td>
+<td class="second">26.83</td>
+<td class="second">26.83</td>
+<td>24.85</td>
+<td class="best">26.84</td>
+<td>26.41</td>
+<td>26.24</td>
+<td>26.54</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">31.55</span></td>
+<td>29.60</td>
+<td>30.25</td>
+<td>29.44</td>
+<td class="second">31.23</td>
+<td>29.45</td>
+<td>29.25</td>
+<td>29.98</td>
+<td>29.81</td>
+</tr>
+</tbody></table></div>
+</article>
+</div>
+</div>
+<div aria-labelledby="tab-counterfactual" class="tab-panel eval-setting-panel" hidden="" id="panel-counterfactual" role="tabpanel">
+<div aria-label="Counterfactual result view" class="results-tabs eval-view-tabs" role="tablist"><button aria-controls="panel-counterfactual-compact" aria-selected="true" class="active" data-eval-view="compact" id="tab-counterfactual-compact" role="tab" type="button">Compact results</button><button aria-controls="panel-counterfactual-full" aria-selected="false" data-eval-view="full" id="tab-counterfactual-full" role="tab" type="button">Full results</button></div><div class="evaluation-panels eval-view-panels">
+<article aria-labelledby="tab-counterfactual-compact" class="result-panel compact-result-panel eval-view-panel active" data-eval-view-panel="compact" id="panel-counterfactual-compact" role="tabpanel">
+<div aria-label="Counterfactual setting compact summary" class="metric-mini-grid metric-mini-grid-two">
+<div class="metric-mini"><strong>8 / 8</strong><span>Best / Tied-best</span></div>
+<div class="metric-mini"><strong>1.00</strong><span>Average Rank ↓</span></div>
+</div>
+<div aria-label="Counterfactual setting overall performance chart" class="score-plot-wrap" role="region" tabindex="0"><svg aria-label="Counterfactual Overall Performance" class="score-svg" role="img" viewbox="0 0 1100 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="bar-grad-counterfactual-overall-performance-0" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffe8a8"></stop><stop offset="1" stop-color="#d5a235"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f8c84e"></stop><stop offset="1" stop-color="#c8192f"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00945d"></stop><stop offset="1" stop-color="#006b46"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#006b46"></stop><stop offset="1" stop-color="#d91f2f"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d91f2f"></stop><stop offset="1" stop-color="#f1b94b"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-5" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f1b94b"></stop><stop offset="1" stop-color="#9d1523"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-6" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9d1523"></stop><stop offset="1" stop-color="#f7d67a"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-7" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#008956"></stop><stop offset="1" stop-color="#f4c65a"></stop></lineargradient>
+<lineargradient id="bar-grad-counterfactual-overall-performance-8" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#efe5c6"></stop><stop offset="1" stop-color="#8b7a55"></stop></lineargradient>
+<filter height="170%" id="barGlow" width="170%" x="-35%" y="-35%"><fegaussianblur result="blur" stddeviation="12"></fegaussianblur><femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+</defs>
+<rect fill="rgba(255,226,148,0.050)" height="358" rx="24" stroke="rgba(255,226,148,0.20)" width="1098" x="1" y="1"></rect>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="34.0" y2="34.0"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="39.0">100</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="95.5" y2="95.5"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="100.5">75</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="157.0" y2="157.0"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="162.0">50</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="218.5" y2="218.5"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="223.5">25</text>
+<line stroke="rgba(255,226,148,0.18)" stroke-width="1" x1="58" x2="1076" y1="280.0" y2="280.0"></line>
+<text fill="rgba(255,226,148,0.62)" font-size="14" font-weight="850" text-anchor="end" x="44" y="285.0">0</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-0)" filter="url(#barGlow)" height="246.0" opacity="0.96" rx="14" width="54" x="87.6" y="34.0"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="114.6" y="20.0">100.0</text>
+<text fill="#ffffff" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 114.6 314.0)" x="114.6" y="314.0">TADiff (Ours)</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-1)" height="172.9" opacity="0.96" rx="14" width="54" x="200.7" y="107.1"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="227.7" y="93.1">70.3</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 227.7 314.0)" x="227.7" y="314.0">PatchTST</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-2)" height="153.8" opacity="0.96" rx="14" width="54" x="313.8" y="126.2"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="340.8" y="112.2">62.5</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 340.8 314.0)" x="340.8" y="314.0">Sundial</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-3)" height="134.6" opacity="0.96" rx="14" width="54" x="426.9" y="145.4"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="453.9" y="131.4">54.7</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 453.9 314.0)" x="453.9" y="314.0">TimeMMD</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-4)" height="111.4" opacity="0.96" rx="14" width="54" x="540.0" y="168.6"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="567.0" y="154.6">45.3</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 567.0 314.0)" x="567.0" y="314.0">VerbalTS</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-5)" height="103.8" opacity="0.96" rx="14" width="54" x="653.1" y="176.2"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="680.1" y="162.2">42.2</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 680.1 314.0)" x="680.1" y="314.0">TimeCMA</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-6)" height="92.2" opacity="0.96" rx="14" width="54" x="766.2" y="187.8"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="793.2" y="173.8">37.5</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 793.2 314.0)" x="793.2" y="314.0">DLinear</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-7)" height="53.9" opacity="0.96" rx="14" width="54" x="879.3" y="226.1"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="906.3" y="212.1">21.9</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 906.3 314.0)" x="906.3" y="314.0">CT</text>
+<rect fill="url(#bar-grad-counterfactual-overall-performance-8)" height="46.2" opacity="0.96" rx="14" width="54" x="992.4" y="233.8"></rect>
+<text fill="#ffffff" font-size="15" font-weight="950" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;" text-anchor="middle" x="1019.4" y="219.8">18.8</text>
+<text fill="#f3dca2" font-size="14" font-weight="850" text-anchor="middle" transform="rotate(-36 1019.4 314.0)" x="1019.4" y="314.0">IATSF</text>
+</svg></div>
+</article>
+<article aria-labelledby="tab-counterfactual-full" class="result-panel full-result-panel eval-view-panel" data-eval-view-panel="full" hidden="" id="panel-counterfactual-full" role="tabpanel">
+<div aria-label="Counterfactual setting full results" class="table-wrap full-results-wrap" role="region" tabindex="0">
+<table class="full-results-table paper-results-table">
+<thead><tr><th>Dataset</th><th>Metric</th><th class="ours-head">TADiff (Ours)</th><th>DLinear</th><th>PatchTST</th><th>Sundial</th><th>VerbalTS</th><th>TimeCMA</th><th>TimeMMD</th><th>CT</th><th>IATSF</th></tr></thead>
+<tbody>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="2">ETTm1</td>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">10.59</span></td>
+<td>8.96</td>
+<td class="second">10.51</td>
+<td>9.94</td>
+<td>8.62</td>
+<td>9.47</td>
+<td>10.14</td>
+<td>8.43</td>
+<td>7.93</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">148.72</span></td>
+<td>96.45</td>
+<td>113.02</td>
+<td>107.14</td>
+<td class="second">140.95</td>
+<td>103.42</td>
+<td>113.65</td>
+<td>93.24</td>
+<td>87.71</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="2">Traffic</td>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">18.08</span></td>
+<td>11.33</td>
+<td>12.99</td>
+<td class="second">16.32</td>
+<td>9.44</td>
+<td>6.36</td>
+<td>12.96</td>
+<td>11.15</td>
+<td>6.57</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">78.58</span></td>
+<td>48.41</td>
+<td>54.86</td>
+<td class="second">64.79</td>
+<td>53.69</td>
+<td>22.71</td>
+<td>56.10</td>
+<td>52.67</td>
+<td>24.62</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="2">Exchange</td>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">17.30</span></td>
+<td>16.61</td>
+<td>16.79</td>
+<td class="second">17.03</td>
+<td>15.29</td>
+<td>16.79</td>
+<td>16.25</td>
+<td>15.67</td>
+<td>16.31</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">213.94</span></td>
+<td>200.45</td>
+<td>201.30</td>
+<td>200.57</td>
+<td class="second">211.37</td>
+<td>201.84</td>
+<td>196.16</td>
+<td>194.49</td>
+<td>199.65</td>
+</tr>
+<tr class="dataset-start">
+<td class="dataset-cell" rowspan="2">Weather</td>
+<td class="metric-cell">DTTC-I ↑</td>
+<td class="best"><span class="ours">26.93</span></td>
+<td>26.79</td>
+<td>26.83</td>
+<td>26.83</td>
+<td>24.43</td>
+<td class="second">26.84</td>
+<td>26.75</td>
+<td>26.25</td>
+<td>26.53</td>
+</tr>
+<tr>
+<td class="metric-cell">DTTC-E ↑</td>
+<td class="best"><span class="ours">30.99</span></td>
+<td>29.04</td>
+<td>29.25</td>
+<td>28.91</td>
+<td class="second">30.16</td>
+<td>29.00</td>
+<td>29.30</td>
+<td>29.23</td>
+<td>29.18</td>
+</tr>
+</tbody></table></div>
+</article>
+</div>
+</div>
+</div>
 </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <p class="has-text-centered"></p>
-    <h2 class="title is-3">Experiment Results</h2> 
-
-    <!-- Interpolating. -->
-    <h3 class="title is-4">Main Results</h3>
-    <div class="content has-text-justified">
-      <p>
-        We compare our method <span class="small-caps">TADiff</span> with the baselines on both synthetic and real-world datasets. We consider both the factual forecasting and counterfactual forecasting.
-        <span class="small-caps">TADiff</span> achieves both superior numerical accuracy and semantic consistency. 
-        Moreover, <span class="small-caps">TADiff</span>  exhibits strong adaptability and generalization for forecasting under diverse future conditions.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-13">
-        <div class="content has-text-centered">
-          <img src="./static/images/main_res.png"
-               class="interpolation-image"
-               alt="Main Results"
-               style="width: auto; max-width: 100%;">
-        </div>
-      </div>
-    </div>
-
-      <div class="content has-text-justified">
-      </div>
-      <!-- <div class="columns is-vcentered interpolation-panel"> -->
-        <!-- <div class="column is-3 has-text-centered"> -->
-      <div class="columns is-centered">
-        <div class="column is-13">
-        <div class="content has-text-centered">
-          <img src="./static/images/case_study.png"
-               class="interpolation-image"
-               alt="Generation case study."
-               width = 945/>
-          <!-- <p>Start Frame</p> -->
-        </div>
-      </div>
-    </div>
-    
-  </div>
-    
+<section aria-labelledby="showcase-title" class="section showcase-empty-section" id="showcase">
+<div class="container">
+<div class="section-head reveal showcase-empty-head">
+<div>
+<div class="section-number">04 · Showcase</div>
+<h2 id="showcase-title">Showcase</h2>
+</div>
+</div>
+<!-- A single video showcase can be inserted here later. -->
+</div>
 </section>
-
-
-<style>
-.gif-image {
-  width: 100%;
-  height: auto;
-  max-width: 200px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-</style>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{gu2026tadiff,
-  author    = {Gu, Shuqi and Zhao, Yongxiang and Jing, Baoyu and Ren, Kan},
+<section aria-labelledby="citation-title" class="section tight" id="citation">
+<div class="container citation-layout">
+<div class="section-head reveal">
+<div>
+<div class="section-number">05 · Citation</div>
+<h2 id="citation-title">BibTeX</h2>
+</div>
+</div>
+<div class="bibtex-box reveal">
+<pre id="bibtexText">@inproceedings{gu2026tadiff,
   title     = {What if Tomorrow is the World Cup Final? Counterfactual Time Series Forecasting with Textual Conditions},
-  journal   = {International Conference on Machine Learning},
-  year      = {2026},
-}</code></pre>
-  </div>
+  author    = {Gu, Shuqi and Zhao, Yongxiang and Jing, Baoyu and Ren, Kan},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2026}
+}</pre>
+</div>
+</div>
 </section>
-
-
+</main>
 <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/genius77777" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container footer-inner">
+<div>TADiff · Counterfactual Time Series Forecasting with Textual Conditions · 2026</div>
+<div class="footer-links">
+<a href="#home">Back to top ↑</a>
+</div>
+</div>
 </footer>
-
+<script src="assets/js/main.js"></script>
 </body>
 </html>
